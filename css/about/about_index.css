@@ -6754,13 +6754,11 @@ blockquote.pullquote.right {
     color: #666;
   }
   
-  #web_bg ~ .page:has(#about-page) {
+  /* #web_bg ~ .page:has(#about-page) {
     background: url(/images/background.png);
     background-size: cover;
     background-attachment: fixed;
-    /* 背景图像大小 */
-
-  }
+  } */
 
   #about-page .author-box {
     position: relative;
