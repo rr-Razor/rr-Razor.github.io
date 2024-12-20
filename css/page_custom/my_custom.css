@@ -1,0 +1,14 @@
+/* 将个人卡片设置背景图 */
+/*白天主题下的配置*/
+#aside-content>.card-widget.card-info {
+    /*换成自己图片的地址*/
+    background-image: url('https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/aside_card_background.png');
+    background-repeat: no-repeat;
+    background-attachment: inherit;
+    background-size: 100%
+}
+/*黑暗主题下的配置*/
+[data-theme=dark] #aside-content>.card-widget.card-info {
+    /*换成自己图片的地址*/
+    background-image: url('https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/aside_card_background_dark.png') !important
+}
