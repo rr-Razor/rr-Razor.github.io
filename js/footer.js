@@ -9,7 +9,7 @@ $(document).ready(function(e){
 
 //本站运行时间，更改自己建立站点的时间
 function show_date_time(){
-$('.framework-info').html('小破站已经安全运行<span id="span_dt_dt" style="color: #b9b9b9;"></span>');
+$('.framework-info').html('小破站已经安全运行<span id="span_dt_dt" style="color: #fff;"></span>');
 window.setTimeout("show_date_time()", 1000);
 BirthDay=new Date("04/28/2020 0:0:0");
 today=new Date();
