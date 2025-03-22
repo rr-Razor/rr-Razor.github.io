@@ -50,3 +50,8 @@ button:hover {
 .aplayer-lrc-contents {
     cursor: url('https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cursor/overwatch_pointer/pointer.cur'), auto !important;
 }
+
+/* 文章发表时间默认鼠标指针 */
+.post-meta-date {
+    cursor: url('https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cursor/overwatch_pointer/pointer.cur'), auto !important;
+}
