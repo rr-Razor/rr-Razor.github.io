@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>A-Star算法介绍 | PlanZ</title><meta name="author" content="青椒肉丝"><meta name="copyright" content="青椒肉丝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="A-Star算法介绍算法介绍A*（念做：A Star）算法是一种很常用的路径查找和图形遍历算法。它有较好的性能和准确度。 A*算法最初发表于1968年，由Stanford研究院的Peter Hart, Nils Nilsson以及Bertram Raphael发表。它可以被认为是Dijkstra算法的扩展。 广度优先搜索为了更好的理解A*算法，我们首先从广度优先（Breadth First）算法讲">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A-Star算法介绍">
+<meta property="og:url" content="https://moonglowshadow.com/2020/10/19/a-star-algorithm/index.html">
+<meta property="og:site_name" content="PlanZ">
+<meta property="og:description" content="A-Star算法介绍算法介绍A*（念做：A Star）算法是一种很常用的路径查找和图形遍历算法。它有较好的性能和准确度。 A*算法最初发表于1968年，由Stanford研究院的Peter Hart, Nils Nilsson以及Bertram Raphael发表。它可以被认为是Dijkstra算法的扩展。 广度优先搜索为了更好的理解A*算法，我们首先从广度优先（Breadth First）算法讲">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png">
+<meta property="article:published_time" content="2020-10-18T16:45:15.000Z">
+<meta property="article:modified_time" content="2025-03-23T11:02:50.654Z">
+<meta property="article:author" content="青椒肉丝">
+<meta property="article:tag" content="A-Star">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png"><link rel="shortcut icon" href="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/favicon_cat.png"><link rel="canonical" href="https://moonglowshadow.com/2020/10/19/a-star-algorithm/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css?v=5.2.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-PKF693RYWD"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-PKF693RYWD')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-PKF693RYWD', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'A-Star算法介绍',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/aplayer/aplayer_custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/one_pic_background/modify.css"><link rel="stylesheet" href="/css/page_custom/my_custom.css"><link rel="stylesheet" href="/css/font/font_setting.css"><link rel="stylesheet" href="/css/cursor/cursor_setting.css"><meta name="generator" content="Hexo 7.2.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/css/preloader/preloader_flash.css"><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="web_bg" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/background_tingyun.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/playlist/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/logo_cat.png" alt="Logo"><span class="site-name">PlanZ</span></a><a class="nav-page-title" href="/"><span class="site-name">A-Star算法介绍</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/playlist/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">A-Star算法介绍</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-10-18T16:45:15.000Z" title="发表于 2020-10-19 00:45:15">2020-10-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-23T11:02:50.654Z" title="更新于 2025-03-23 19:02:50">2025-03-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="top-img" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png);"></div><article class="container post-content" id="article-container"><h1 id="A-Star算法介绍"><a href="#A-Star算法介绍" class="headerlink" title="A-Star算法介绍"></a>A-Star算法介绍</h1><h2 id="算法介绍"><a href="#算法介绍" class="headerlink" title="算法介绍"></a>算法介绍</h2><p>A*（念做：A Star）算法是一种很常用的路径查找和图形遍历算法。它有较好的性能和准确度。</p>
+<p>A*算法最初发表于1968年，由Stanford研究院的Peter Hart, Nils Nilsson以及Bertram Raphael发表。它可以被认为是Dijkstra算法的扩展。</p>
+<h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><p>为了更好的理解A*算法，我们首先从广度优先（Breadth First）算法讲起。</p>
+<p>正如其名称所示，广度优先搜索以广度做为优先级进行搜索。</p>
+<p>从起点开始，首先遍历起点周围邻近的点，然后再遍历已经遍历过的点邻近的点，逐步的向外扩散，直到找到终点。</p>
+<p>这种算法就像洪水（Flood fill）一样向外扩张，算法的过程如下图所示：</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/a-star-algorithm/a-01.gif" alt=""></p>
+<p>在上面这幅动态图中，算法遍历了图中所有的点，这通常没有必要。对于有明确终点的问题来说，一旦到达终点便可以提前终止算法，下面这幅图对比了这种情况：</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/a-star-algorithm/a-02.png" alt=""></p>
+<p>在执行算法的过程中，每个点需要记录达到该点的前一个点的位置 — 可以称之为父节点。这样做之后，一旦到达终点，便可以从终点开始，反过来顺着父节点的顺序找到起点，由此就构成了一条路径。</p>
+<h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2><p>Dijkstra算法是由计算机科学家<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Edsger_W._Dijkstra">Edsger W. Dijkstra</a>在1956年提出的。</p>
+<p>Dijkstra算法用来寻找图形中节点之间的最短路径。</p>
+<p>考虑这样一种场景，在一些情况下，图形中相邻节点之间的移动代价并不相等。例如，游戏中的一幅图，既有平地也有山脉，那么游戏中的角色在平地和山脉中移动的速度通常是不相等的。</p>
+<p>在Dijkstra算法中，需要计算每一个节点距离起点的总移动代价。同时，还需要一个优先队列结构。对于所有待遍历的节点，放入优先队列中会按照代价进行排序。</p>
+<p>在算法运行的过程中，每次都从优先队列中选出代价最小的作为下一个遍历的节点。直到到达终点为止。</p>
+<p>下面对比了不考虑节点移动代价差异的广度优先搜索与考虑移动代价的Dijkstra算法的运算结果：</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/a-star-algorithm/a-03.gif" alt=""></p>
+<figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当图形为网格图，并且每个节点之间的移动代价是相等的，那么Dijkstra算法将和广度优先算法变得一样。</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="最佳优先搜索"><a href="#最佳优先搜索" class="headerlink" title="最佳优先搜索"></a>最佳优先搜索</h2><p>在一些情况下，如果我们可以预先计算出每个节点到终点的距离，则我们可以利用这个信息更快的到达终点。</p>
+<p>其原理也很简单。与Dijkstra算法类似，我们也使用一个优先队列，但此时以每个节点到达终点的距离作为优先级，每次始终选取到终点移动代价最小（离终点最近）的节点作为下一个遍历的节点。这种算法称之为最佳优先（Best First）算法。</p>
+<p>这样做可以大大加快路径的搜索速度，如下图所示：</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/a-star-algorithm/a-04.gif" alt=""></p>
+<p>但这种算法会不会有什么缺点呢？答案是肯定的。</p>
+<p>因为，如果起点和终点之间存在障碍物，则最佳优先算法找到的很可能不是最短路径，下图描述了这种情况。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/a-star-algorithm/a-05.gif" alt=""></p>
+<h2 id="A-算法"><a href="#A-算法" class="headerlink" title="A*算法"></a>A*算法</h2><p>对比了上面几种算法，最后终于可以讲解本文的重点：A*算法了。</p>
+<p>下面的描述我们将看到，A*算法实际上是综合上面这些算法的特点于一身的。</p>
+<p>A*算法通过下面这个函数来计算每个节点的优先级。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/a-star-algorithm/a-06.png" alt=""></p>
+<p>其中：</p>
+<ul>
+<li>f(n)是节点n的综合优先级。当我们选择下一个要遍历的节点时，我们总会选取综合优先级最高（值最小）的节点。</li>
+<li>g(n) 是节点n距离起点的代价。</li>
+<li>h(n)是节点n距离终点的预计代价，这也就是A*算法的启发函数。关于启发函数我们在下面详细讲解。</li>
+</ul>
+<p>A*算法在运算过程中，每次从优先队列中选取f(n)值最小（优先级最高）的节点作为下一个待遍历的节点。</p>
+<p>另外，A*算法使用两个集合来表示待遍历的节点，与已经遍历过的节点，这通常称之为<code>open_set</code>和<code>close_set</code>。</p>
+<p>完整的A*算法描述如下：</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">* 初始化open_set和close_set；</span><br><span class="line">* 将起点加入open_set中，并设置优先级为<span class="number">0</span>（优先级最高）；</span><br><span class="line">* 如果open_set不为空，则从open_set中选取优先级最高的节点n：</span><br><span class="line">    * 如果节点n为终点，则：</span><br><span class="line">        * 从终点开始逐步追踪<span class="built_in">parent</span>节点，一直达到起点；</span><br><span class="line">        * 返回找到的结果路径，算法结束；</span><br><span class="line">    * 如果节点n不是终点，则：</span><br><span class="line">        * 将节点n从open_set中删除，并加入close_set中；</span><br><span class="line">        * 遍历节点n所有的邻近节点：</span><br><span class="line">            * 如果邻近节点m在close_set中，则：</span><br><span class="line">                * 跳过，选取下一个邻近节点</span><br><span class="line">            * 如果邻近节点m也不在open_set中，则：</span><br><span class="line">                * 设置节点m的<span class="built_in">parent</span>为节点n</span><br><span class="line">                * 计算节点m的优先级</span><br><span class="line">                * 将节点m加入open_set中</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="启发函数"><a href="#启发函数" class="headerlink" title="启发函数"></a>启发函数</h3><p>上面已经提到，启发函数会影响A*算法的行为。</p>
+<ul>
+<li>在极端情况下，当启发函数h(n)始终为0，则将由g(n)决定节点的优先级，此时算法就退化成了Dijkstra算法。</li>
+<li>如果h(n)始终小于等于节点n到终点的代价，则A*算法保证一定能够找到最短路径。但是当h(n)的值越小，算法将遍历越多的节点，也就导致算法越慢。</li>
+<li>如果h(n)完全等于节点n到终点的代价，则A*算法将找到最佳路径，并且速度很快。可惜的是，并非所有场景下都能做到这一点。因为在没有达到终点之前，我们很难确切算出距离终点还有多远。</li>
+<li>如果h(n)的值比节点n到终点的代价要大，则A*算法不能保证找到最短路径，不过此时会很快。</li>
+<li>在另外一个极端情况下，如果h(n)相较于g(n)大很多，则此时只有h(n)产生效果，这也就变成了最佳优先搜索。</li>
+</ul>
+<p>由上面这些信息我们可以知道，通过调节启发函数我们可以控制算法的速度和精确度。因为在一些情况，我们可能未必需要最短路径，而是希望能够尽快找到一个路径即可。这也是A*算法比较灵活的地方。</p>
+<p>对于网格形式的图，有以下这些启发函数可以使用：</p>
+<ul>
+<li>如果图形中只允许朝上下左右四个方向移动，则可以使用曼哈顿距离（Manhattan distance）。</li>
+<li>如果图形中允许朝八个方向移动，则可以使用对角距离。</li>
+<li>如果图形中允许朝任何方向移动，则可以使用欧几里得距离（Euclidean distance）。</li>
+</ul>
+<h3 id="关于距离"><a href="#关于距离" class="headerlink" title="关于距离"></a>关于距离</h3><p><strong>曼哈顿距离</strong></p>
+<p>如果图形中只允许朝上下左右四个方向移动，则启发函数可以使用曼哈顿距离，它的计算方法如下图所示：</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/a-star-algorithm/a-07.png" alt=""></p>
+<p>计算曼哈顿距离的函数如下，这里的D是指两个相邻节点之间的移动代价，通常是一个固定的常数。</p>
+<figure class="highlight jsx"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">heuristic</span>(<span class="params">node</span>) =</span><br><span class="line">    dx = <span class="title function_">abs</span>(node.<span class="property">x</span> - goal.<span class="property">x</span>)</span><br><span class="line">    dy = <span class="title function_">abs</span>(node.<span class="property">y</span> - goal.<span class="property">y</span>)</span><br><span class="line">    <span class="keyword">return</span> D * (dx + dy)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>对角距离</strong></p>
+<p>如果图形中允许斜着朝邻近的节点移动，则启发函数可以使用对角距离。它的计算方法如下：</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/a-star-algorithm/a-08.png" alt=""></p>
+<p>计算对角距离的函数如下，这里的D2指的是两个斜着相邻节点之间的移动代价。如果所有节点都正方形，则其值就是</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/a-star-algorithm/a-09.png" alt=""></p>
+<figure class="highlight jsx"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">heuristic</span>(<span class="params">node</span>) =</span><br><span class="line">    dx = <span class="title function_">abs</span>(node.<span class="property">x</span> - goal.<span class="property">x</span>)</span><br><span class="line">    dy = <span class="title function_">abs</span>(node.<span class="property">y</span> - goal.<span class="property">y</span>)</span><br><span class="line">    <span class="keyword">return</span> D * (dx + dy) + (<span class="variable constant_">D2</span> - <span class="number">2</span> * D) * <span class="title function_">min</span>(dx, dy)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>欧几里得距离</strong></p>
+<p>如果图形中允许朝任意方向移动，则可以使用欧几里得距离。</p>
+<p>欧几里得距离是指两个节点之间的直线距离，因此其计算方法也是我们比较熟悉的：</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/a-star-algorithm/a-10.png" alt=""></p>
+<p>其函数表示如下：</p>
+<figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">function <span class="title">heuristic</span><span class="params">(node)</span> </span>=</span><br><span class="line">    dx = <span class="built_in">abs</span>(node.x - goal.x)</span><br><span class="line">    dy = <span class="built_in">abs</span>(node.y - goal.y)</span><br><span class="line">    <span class="keyword">return</span> D * <span class="built_in">sqrt</span>(dx * dx + dy * dy)</span><br></pre></td></tr></tbody></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://moonglowshadow.com">青椒肉丝</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://moonglowshadow.com/2020/10/19/a-star-algorithm/">https://moonglowshadow.com/2020/10/19/a-star-algorithm/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://moonglowshadow.com" target="_blank">PlanZ</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/A-Star/">A-Star</a></div><div class="post-share"><div class="social-share" data-image="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/js/social-share.min.js" defer=""></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/10/19/typora-user-guide/" title="Typora使用说明"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_11.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Typora使用说明</div></div><div class="info-2"><div class="info-item-1">Typora使用说明空格与换行Typora 在空格与换行部分主要是使用 CommonMark 作为标注规范。  空格：在输入连续的空格后，Typora 会在编辑器视图里为你保留这些空格，但当你打印或导出时，这些空格会被省略成一个。你可以在源代码模式下，为每个空格前加一个 \ 转义符，或者直接使用 HTML 风格的 &amp;nbps; 来保持连续的空格。 软换行：需要说明的是，在 Markdown 语法中，换行（line break）与换段是不同的。且换行分为软换行和硬换行。在 Typora 中，你可以通过 Shift + Enter 完成一次软换行。软换行只在编辑界面可见，当文档被导出时换行会被省略。 硬换行：你可以通过 空格 + 空格 + Shift + Enter 完成一次硬换行，而这也是许多 Markdown 编辑器所原生支持的。硬换行在文档被导出时将被保留，且没有换段的段后距。 换段：你可以通过 Enter 完成一次换段。Typora 会自动帮你完成两次 Shift + Enter 的软换行，从而完成一次换段。这也意味着在 Markdown 语法下，换段是通过在段与段之间加入空行来实现的。 Windows 风格（CR+LF）与 Unix 风格（CR）的换行符：CR 表示回车 \r ，即回到一行的开头，而 LF 表示换行 \n ，即另起一行。所以 Windows 风格的换行符本质是「回车 + 换行」，而 Unix 风格的换行符是「换行」。这也是为什么 Unix / Mac 系统下的文件，如果在 Windows 系统直接打开会全部在同一行内。 你可以在 文件 - 偏好设置 - 编辑器 - 默认换行符 中对此进行切换。   emoji 表情在 Typora 中，你可以用 :emoji: 的形式来打出 emoji，软件会自动给出图形的提示。  LaTeXTypora 原生支持 LaTeX 语法，你有两种方式输入 LaTeX 风格的数学公式：  行内公式（inline）：用 ... 括起公式，公式会出现在行内。 块间公式（display）：用 $$$…$$$ 括起公式（注意 $$$$ 后需要换行），公式会默认显示在行中间。  代码高亮Typora 中代码的插入也可以分为行内和块间两种：  行内代码：用`…` 或 ``…``...</div></div></div></a><a class="pagination-related" href="/2020/10/19/springboot-devtools/" title="DevTools热部署"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_4.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">DevTools热部署</div></div><div class="info-2"><div class="info-item-1">spring-boot-devtools模块能够实现热部署，添加类、添加方法、修改配置文件、修改页面等，都能实现热部署。原理就是重启项目，但比手动重启快，其深层原理是使用了两个ClassLoader，一个Classloader加载那些不会改变的类（第三方Jar包），另一个ClassLoader加载会更改的类，称为restart ClassLoader,这样在有代码更改的时候，原来的restart ClassLoader被丢弃，重新创建一个restart ClassLoader，由于需要加载的类相比较少，所以实现了较快的重启时间（5秒以内）。</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">青椒肉丝</div><div class="author-info-description">All those moments will be lost in time, like tears in rain.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/rr-Razor"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">初次访问时部分资源可能加载速度较慢，请耐心等待、尝试刷新或者使用魔法❀❀❀</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Star%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">A-Star算法介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%97%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">算法介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2"><span class="toc-number">1.2.</span> <span class="toc-text">广度优先搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dijkstra%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">Dijkstra算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E4%BD%B3%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2"><span class="toc-number">1.4.</span> <span class="toc-text">最佳优先搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-%E7%AE%97%E6%B3%95"><span class="toc-number">1.5.</span> <span class="toc-text">A*算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E5%8F%91%E5%87%BD%E6%95%B0"><span class="toc-number">1.5.1.</span> <span class="toc-text">启发函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E8%B7%9D%E7%A6%BB"><span class="toc-number">1.5.2.</span> <span class="toc-text">关于距离</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/04/01/godot-first-game-01/" title="使用Godot制作第一个2D游戏 01"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Godot制作第一个2D游戏 01"></a><div class="content"><a class="title" href="/2025/04/01/godot-first-game-01/" title="使用Godot制作第一个2D游戏 01">使用Godot制作第一个2D游戏 01</a><time datetime="2025-04-01T14:40:05.000Z" title="发表于 2025-04-01 22:40:05">2025-04-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/06/memory-palace/" title="宫殿记忆法"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory-palace-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="宫殿记忆法"></a><div class="content"><a class="title" href="/2025/03/06/memory-palace/" title="宫殿记忆法">宫殿记忆法</a><time datetime="2025-03-06T12:15:25.000Z" title="发表于 2025-03-06 20:15:25">2025-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/27/mars-survival-guide/" title="火星生存指南--火星救援"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/mars-survival-guide/mars-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="火星生存指南--火星救援"></a><div class="content"><a class="title" href="/2024/11/27/mars-survival-guide/" title="火星生存指南--火星救援">火星生存指南--火星救援</a><time datetime="2024-11-27T03:13:26.000Z" title="发表于 2024-11-27 11:13:26">2024-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/19/commands-used-4-training/" title="服务器上模型训练的常用命令"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/commands-used-4-training/com-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="服务器上模型训练的常用命令"></a><div class="content"><a class="title" href="/2024/11/19/commands-used-4-training/" title="服务器上模型训练的常用命令">服务器上模型训练的常用命令</a><time datetime="2024-11-19T08:58:24.000Z" title="发表于 2024-11-19 16:58:24">2024-11-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/12/ozymandias/" title="OZYMANDIAS 奥西曼迭斯"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/ozymandias/ozy-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OZYMANDIAS 奥西曼迭斯"></a><div class="content"><a class="title" href="/2024/11/12/ozymandias/" title="OZYMANDIAS 奥西曼迭斯">OZYMANDIAS 奥西曼迭斯</a><time datetime="2024-11-12T13:36:55.000Z" title="发表于 2024-11-12 21:36:55">2024-11-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">©2020 - 2025 By 青椒肉丝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.2.2"></script><script src="/js/main.js?v=5.2.2"></script><script src="/js/tw_cn.js?v=5.2.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><div id="moon-aplayer" class="aplayer no-destroy" data-id="13355291265" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-lrctype="0" data-listfolded="true" data-mutex="true"></div><script src="/js/jquery.js"></script><script src="/js/footer.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/playlist/"]):not([href="/2024/11/27/mars-survival-guide/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章或关键字" type="text"></div></div><hr><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.2.2"></script></div></div></body></html>

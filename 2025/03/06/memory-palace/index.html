@@ -1,0 +1,426 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>宫殿记忆法 | PlanZ</title><meta name="author" content="青椒肉丝"><meta name="copyright" content="青椒肉丝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="到最后你们只会记得我曾经被狗咬过。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="宫殿记忆法">
+<meta property="og:url" content="https://moonglowshadow.com/2025/03/06/memory-palace/index.html">
+<meta property="og:site_name" content="PlanZ">
+<meta property="og:description" content="到最后你们只会记得我曾经被狗咬过。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory-palace-cover.png">
+<meta property="article:published_time" content="2025-03-06T12:15:25.000Z">
+<meta property="article:modified_time" content="2025-03-22T02:56:09.398Z">
+<meta property="article:author" content="青椒肉丝">
+<meta property="article:tag" content="记忆">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory-palace-cover.png"><link rel="shortcut icon" href="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/favicon_cat.png"><link rel="canonical" href="https://moonglowshadow.com/2025/03/06/memory-palace/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css?v=5.2.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-PKF693RYWD"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-PKF693RYWD')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-PKF693RYWD', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '宫殿记忆法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/aplayer/aplayer_custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/one_pic_background/modify.css"><link rel="stylesheet" href="/css/page_custom/my_custom.css"><link rel="stylesheet" href="/css/font/font_setting.css"><link rel="stylesheet" href="/css/cursor/cursor_setting.css"><meta name="generator" content="Hexo 7.2.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/css/preloader/preloader_flash.css"><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="web_bg" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/background_tingyun.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/playlist/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory-palace-cover.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/logo_cat.png" alt="Logo"><span class="site-name">PlanZ</span></a><a class="nav-page-title" href="/"><span class="site-name">宫殿记忆法</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/playlist/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">宫殿记忆法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-06T12:15:25.000Z" title="发表于 2025-03-06 20:15:25">2025-03-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-22T02:56:09.398Z" title="更新于 2025-03-22 10:56:09">2025-03-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9D%82%E8%B0%88/">杂谈</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="top-img" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory-palace-cover.png);"></div><article class="container post-content" id="article-container"><h1 id="宫殿记忆法"><a href="#宫殿记忆法" class="headerlink" title="宫殿记忆法"></a>宫殿记忆法</h1><p><strong>”到最后你们只会记得我曾经被狗咬过。“</strong></p>
+<p>这句话来自多年前的一场讲座，演讲者准确预言了未来：时至今日我的确回想不起演讲的细节了（可能在听完演讲的第二天就一股脑全忘掉了），但却总能记起有这么一位被狗咬了的演讲者。</p>
+<p>演讲者是一位英语教培行业的讲师，分享了一段托福考试前被狗咬了的经历。相比于英文单词记忆法之类的枯燥内容，在座的学生们显然对这段有趣的经历更感兴趣，因此便有了以上那句玩笑话。神奇的是，作为演讲主体内容的英语学习方法没有给我留下一丝印象，反而是这句玩笑话被我记了很多年，而这场演讲，也因为这句玩笑话的关系，一直留在了我的记忆中。</p>
+<p>作为本文的读者，你也可以尝试一下，当一个星期、一个月乃至一年之后，你能否回忆起来读过本篇文章呢？如果让你回想起本篇文章的内容，你会想起些什么呢？本文将要讨论的记忆方法与“被狗咬了”这个案例哪个给你留下的印象更多呢？</p>
+<p>在这个关于“狗”的例子中，我认为有两个有趣的点：</p>
+<ul>
+<li>个性化的内容更容易被长时间记忆</li>
+<li>记忆之间能够相互提示</li>
+</ul>
+<p>首先，一些个性化的、新奇的体验或者经历更容易给我们留下深刻的印象。比如一个人第一次失恋的经历可能会使他铭记终生，那当他失恋第一百次呢？如果此时叫他分别回忆第1个和第91个恋爱对象的姓名呢？在这个”狗“的例子中，不同于大多数枯燥乏味的说教（每个学生千万遍的经历），听讲台上的人讲述被狗咬的经历是新奇的，这种个性化、差异化的内容更容易给人留下深刻的印象，如同下满白棋的棋盘上突然落下一枚黑子，那么人们的注意力就会被黑旗吸引，而没有人会关注棋盘上的某颗白棋。</p>
+<p>另外，不同的记忆之间能够相互提示，我们可以利用一个记忆对另一段记忆进行提示。比如一个人在多年之后回忆起与初恋对象在一家火锅店初识的场景，这段两人相见的回忆便提示出了关于火锅店细节的记忆：店名、食材、环境氛围等，相比对于其他火锅店的记忆，这家特殊意义的火锅店一定具有更加丰富的细节。同样是在“狗”的例子中，如果不是演讲者最后这段关于“狗”的论述，那么我也许就不会联想记忆起这位风趣的演讲者，更不会记得这是一场关于英语的演讲了。你也许会觉得这些联想驴唇不对马嘴，我通过“狗”想到了“演讲”，这又有什么意义呢？然而我们今天要讨论的记忆法正是需要读者具有天马行空的想象力。</p>
+<h2 id="什么是宫殿记忆法"><a href="#什么是宫殿记忆法" class="headerlink" title="什么是宫殿记忆法"></a>什么是宫殿记忆法</h2><p>在《神探夏洛克》中，福尔摩斯闭上眼睛进入他的记忆宫殿中，只见他从想像的书架中抽出了一本书，翻看了几眼便得到了自已想要的内容。在《生活大爆炸》中，谢尔顿具有图形化记忆，可以过目不忘，大概也是类似记忆宫殿的方法。那么什么是图形记忆？我们真的可以想象出来一个图书馆，然后把想要记下的东西写在想像出来的书上吗？</p>
+<p>也许有些人通过特殊的方法以及大量的记忆练习真的可以达到影视里这种艺术化的效果，但宫殿记忆法的基本原理，基于我们从“狗”的案例中总结出来的两个点：<strong>记忆点</strong>以及<strong>联系</strong>。</p>
+<p><strong>记忆点</strong>，就是我们脑海中的长期记忆。我们需要用这些长期记忆搭建我们的记忆宫殿，但毕竟我们脑海中印象深刻的事你一时之间可能就能想到那么一两件，缺少建材怎么办？没关系，我们可以主动创造这些长期记忆。</p>
+<p>如果说我们的记忆宫殿是一座图书馆，记忆点是构成图书馆的一本本书，那么<strong>联系</strong>就是一本书的密码表，需要通过这个密码表才能从书中解码出保存的信息。</p>
+<p>所以简单来说，所谓宫殿记忆法，就是用我们刻意强化的一些记忆，来提示另一些我们想要记住的信息。比如非常难记的密码、某人的生日等。一旦联系建立起来，你可以长时间的且稳定地保存某些你想记住的特定信息。在《金字塔原理》中，有一段关于<a href="https://moonglowshadow.com/2024/09/18/pyramid-theory/">“联想”</a>的讨论，可能会使你对上述原理的理解更加深刻。仍然觉得有点抽象？没关系，请继续参阅以下宫殿搭建指南和使用说明书。</p>
+<h2 id="宫殿搭建指南"><a href="#宫殿搭建指南" class="headerlink" title="宫殿搭建指南"></a>宫殿搭建指南</h2><p>记忆点就是搭建记忆宫殿的砖瓦。</p>
+<p>首先让我们建立起一段线性记忆点，你可以选择上学、上班要走的一条路，从出门开始，不断选择参照物，建立记忆点，比如：</p>
+<ul>
+<li>出门首先看到邻居家贴的<strong>对联</strong></li>
+<li>接着过马路必须经过的<strong>红绿灯</strong></li>
+<li>路过的<strong>公交车站</strong></li>
+<li>路过的<strong>早餐店</strong></li>
+<li>……</li>
+<li>最终到达<strong>学校的大门</strong></li>
+</ul>
+<p>由于我们对这条路非常熟悉，相信记住这些记忆点并不困难，而且这些记忆点之间的先后关系也很容易确定，比如<strong>学校大门</strong>是最后一个记忆点，<strong>文具店</strong>在校门边所以是选择的倒数第二个记忆点，<strong>理发店</strong>排在<strong>早餐店</strong>之后，因为早餐店就在家不远处。</p>
+<p>建立完记忆点之后，不妨在脑海里回忆几遍，看是否能够完整走完这条路，回忆这条路上的参照物有没有困难。当你觉得可以轻松记起这条路上的任意一个记忆点时，你就像福尔摩斯一样也搭建好了属于自己的记忆宫殿。</p>
+<p>为了直观演示记忆宫殿的搭建过程，我们可以借助《疯狂动物城》中朱迪警官的第一次进城的经历一起搭建一个线性记忆宫殿。首先可以通过以下片段链接或者电影原片先体验一下这段新奇的旅程，获得一个初始的印象。</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1hz4y1D7JP/?spm_id_from=333.337.search-card.all.click&amp;vd_source=c5d32b76b7f25615fe49ce8530034071">《疯狂动物城》片段</a></p>
+<p>尽管朱迪警官的记忆并不属于我们，但好在《疯狂动物城》的这个片段想象力足够丰富也足够有趣，我们借助朱迪警官的视角，一路下来也能找到不少的记忆点。</p>
+<p>记忆点1：<strong>MP4</strong></p>
+<p>第一个镜头，朱迪警官拿出了播放器播放了《Try Everything》，旅途即将展开。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point01.png" alt=""></p>
+<p>记忆点2：<strong>奔驰的列车</strong></p>
+<p>朱迪坐着列车，在绿色的原野上驶向未知的动物城。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point02.png" alt=""></p>
+<p>记忆点3：<strong>动物城</strong></p>
+<p>初见高楼林立的动物城全貌。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point03.png" alt=""></p>
+<p>记忆点4：<strong>沙漠区的棕榈树</strong></p>
+<p>列车首先驶向动物城外围的沙漠区，映入眼帘的是沙漠区中巨大的棕榈树标志。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point04.png" alt=""></p>
+<p>记忆点5：<strong>边境长城</strong></p>
+<p>即将离开沙漠区，驶向隔离沙漠区和冰原区的巨大城墙。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point05.png" alt=""></p>
+<p>记忆点6：<strong>冰原中的湖泊</strong></p>
+<p>冰原区我没有找到特别满意的参照物，就选湖泊这个场景好了，算是比较特色的极地场景。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point06.png" alt=""></p>
+<p>记忆点7：<strong>冰山隧道</strong></p>
+<p>穿过冰山，离开冰原区，即将到达下一场景。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point07.png" alt=""></p>
+<p>记忆点8：<strong>蘑菇树屋</strong></p>
+<p>进入雨林区，首先观察到该区域蘑菇形状树屋的建筑特色。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point08.png" alt=""></p>
+<p>记忆点9：<strong>洒水喷头</strong></p>
+<p>车窗外在下雨，朱迪向上看去，竟然是喷头在洒水。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point09.png" alt=""></p>
+<p>记忆点10：<strong>飞艇</strong></p>
+<p>明明只要从上面飞过去就好了，却要把桥立起来，飞艇也是船是吧ヽ(ー_ー)ノ。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point10.png" alt=""></p>
+<p>记忆点11：<strong>羚羊角车站</strong></p>
+<p>具有巨大羚羊角标志的车站，演唱《Try Everything》的歌手夏奇羊是一只瞪羚，车站上的这种角应该是旋角羚。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point11.png" alt=""></p>
+<p>记忆点12：<strong>从下水道钻出来的河马</strong></p>
+<p>这公文包早就被水泡透了吧。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point12.png" alt=""></p>
+<p>记忆点13：<strong>仓鼠电梯（or滑梯？）</strong></p>
+<p>只能下不能上的电梯吗？</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point13.png" alt=""></p>
+<p>记忆点14：<strong>果汁吧</strong></p>
+<p>水獭店员将果汁递给长颈鹿（能向上的电梯这不就来了）。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point14.png" alt=""></p>
+<p>记忆点15：<strong>朱迪</strong></p>
+<p>最后一个记忆点就给朱迪警官好了，这样我们就凑够了15个记忆点。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/point15.png" alt=""></p>
+<p>好，这样一个简单的具有15个记忆点的记忆宫殿就算搭建完了，让我们试着回顾一下，看看能否按顺序回想起所有的记忆点。</p>
+<p>现在让我们进入回忆：</p>
+<p>首先朱迪打开<strong>MP4</strong>开始播放背景音乐——然后镜头拉远，<strong>列车</strong>飞驰在原野上——远远望见<strong>动物城</strong>——动物城的外围是沙漠区，高大的<strong>棕榈树</strong>建筑非常引人注目——列车通过分割区域的<strong>边境长城</strong>前往下一区域——列车驶入冰原区，有着大片深蓝色的<strong>湖泊</strong>——列车穿过<strong>雪山隧道</strong>来到雨林区——进入雨林区一眼就能看到建在树上的<strong>蘑菇树屋</strong>——雨林区常年下雨，原来是<strong>洒水喷头</strong>在人工降雨——接下来我们将见证动物城独特的立体交通，<strong>空艇</strong>也是艇——结束了雨林区的游览，列车驶向终点站，具有巨大<strong>羚羊角标志的车站</strong>——下了车，在车站中也能见到不少有趣的事物，朱迪坐扶梯上楼，从旁边的下水道里钻出来了一只<strong>河马</strong>（是因为河马太胖了坐不了电梯所以游上来的吗？）——刚看完庞然大物，下一秒我们就看到穿着西装的<strong>仓鼠坐滑梯</strong>下楼（你要怎么回去呢？）——然后视角来到了一旁的<strong>果汁吧</strong>，水獭店员将果汁通过果汁电梯送给长颈鹿顾客（这个电梯给仓鼠也能用）——最后结束了本次旅途，视角给回了主角<strong>朱迪</strong>。</p>
+<p>并不困难对吧。凭借图形化记忆、故事剧情的推动以及场景之间的联系，记住这15个记忆点应该比单纯地记18位身份证号容易多了，而且这种图形记忆能够保存更长的时间。</p>
+<p>无论你的记忆宫殿是通过哪种方式搭建的（现实生活中的参照物、游戏电影中的场景、天马行空的想像），我们最终的目的是搭建起一段牢固的长期记忆，通过生活中反复出现的场景、新奇的事物、相关的联想，在较长的时间内维持我们的记忆宫殿并不困难。而且随着后续对记忆宫殿的使用，我们的记忆点将不断被强化，宫殿也会越来越牢靠。</p>
+<p>读者可以在搭建完记忆宫殿之后先将注意力放在其他地方，过一段时间后再试着回想所搭建的记忆宫殿，如果能比较轻松地回忆起所有的记忆点，那么恭喜你已经掌握了记忆宫殿的搭建方式，在下文中将介绍如何对我们辛苦搭建起来的记忆宫殿进行使用。</p>
+<h2 id="使用说明书"><a href="#使用说明书" class="headerlink" title="使用说明书"></a>使用说明书</h2><p>在上一步中，我们使用记忆点搭建了记忆宫殿，现在我们要通过<strong>联系</strong>，将记忆宫殿利用起来。</p>
+<p>设想这样一个场景，你马上要出门买菜，准备买些<strong>鸡蛋</strong>、<strong>土豆</strong>、<strong>胡萝卜</strong>做晚饭，这时妈妈跟你说回来给妹妹带箱<strong>酸奶</strong>，再买点<strong>苹果</strong>和<strong>橘子</strong>，爸爸跟你说家里的<strong>咸鸭蛋</strong>和<strong>牛奶</strong>也不够了，也买点吧。你刚出门了，就听见妹妹大喊“我想吃<strong>葡萄</strong>”。最终你终于到达了超市，此时你还记得几样要买的东西呢？</p>
+<blockquote>
+<p>鸡蛋、土豆、胡萝卜、酸奶、苹果、橘子、咸鸭蛋、牛奶、葡萄</p>
+</blockquote>
+<p>《金字塔原理》这本书中提到了一种归类的方法，即将以上物品归类，在记忆时先记<strong>大类</strong>再用大类提示所属该类的物品。</p>
+<ul>
+<li>蛋奶<ul>
+<li>鸡蛋</li>
+<li>酸奶</li>
+<li>咸鸭蛋</li>
+<li>牛奶</li>
+</ul>
+</li>
+<li>水果<ul>
+<li>苹果</li>
+<li>橘子</li>
+<li>葡萄</li>
+</ul>
+</li>
+<li>蔬菜<ul>
+<li>土豆</li>
+<li>胡萝卜</li>
+</ul>
+</li>
+</ul>
+<p>在以上例子中，我们首先记忆要买<strong>蛋奶</strong>、<strong>水果</strong>、<strong>蔬菜</strong>三类物品，再用大类向下提示，比如<strong>水果</strong>可以提示出妈妈要买的苹果、橘子和妹妹要吃的葡萄。这种记忆方法固然能够降低记忆的压力，但当要记住的物体越来越多时，归类的种类也会变多，记忆也会越来越困难。而且由于我们是临时做出的分类，有时我们可能会直接忘记某一大类。</p>
+<p>宫殿记忆法中同样用到了<strong>提示</strong>的概念，或者说是<strong>联系</strong>。通过选取某条路上参照物的形式，我们已经建立起了图形化的长期记忆，即上文例子中包含15个记忆点的记忆宫殿，读者们现在还能回忆起自己建立的记忆宫殿吗？如果可以的话，接下来，我们将在记忆点和购物清单上的物品建立<strong>联系</strong>。</p>
+<p>这一步就要考验读者天马行空的想象力了，越是离奇的联想反而能留下深刻的印象。我们需要借助我们的想象，融合宫殿中的记忆点与购物清单上的物品。</p>
+<ul>
+<li><p><strong>记忆点1：MP4</strong></p>
+<ul>
+<li><p>如何在MP4和鸡蛋之间建立联系呢？</p>
+</li>
+<li><p>抽象的联系，比如MP4上在播放《鸡你太美》（只因你太美）。（开个玩笑，只要通过你的联想能把MP4这个场景和鸡蛋建立起联系就好。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory01.png" alt=""></p>
+</li>
+<li><p>或者说想象一下朱迪手里拿着一个鸡蛋，蛋壳裂开出现了朱迪的MP4。（大概是这样吧）</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory02.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><strong>记忆点2：原野上的列车</strong></p>
+<ul>
+<li><p>我们按照顺序来，接下来是土豆。我们给朱迪所乘坐的列车降个配置，变成装满土豆的火车。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory03.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><strong>记忆点3：从远处望见的动物城</strong></p>
+<ul>
+<li><p>这次轮到胡萝卜了，想象动物城是一座由胡萝卜组成的城市。（朱迪狂喜！）</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory04.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><strong>记忆点4：初到沙漠区见到的棕榈树建筑</strong></p>
+<ul>
+<li><p>这次是酸奶，我们可以想象一盒酸奶里长出了一颗棕榈树。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory05.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><strong>记忆点5：沙漠区与冰原区之间巨大的城墙</strong></p>
+<ul>
+<li><p>苹果和城墙能有什么关系呢？偷个懒，直接把他们放在一起算了，一个巨大的苹果砸在了城墙上。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory06.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><strong>记忆点6：冰原区的巨大湖泊</strong></p>
+<ul>
+<li><p>湖泊和橘子，我们就想象一个由果粒橙填满的湖泊吧。（这图画的怪怪的。）</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory07.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><strong>记忆点7：穿过冰山的隧道</strong></p>
+<ul>
+<li><p>冰山隧道和咸鸭蛋，把冰山换成大大的鸭蛋，乘坐的列车冲入蛋中。（这画面跟我想的不太一样，不过也行吧。）</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory08.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><strong>记忆点8：到雨林区了，蘑菇树屋</strong></p>
+<ul>
+<li><p>按顺序来说应该轮到牛奶了，但是我选择葡萄，树上挂着一串葡萄，原来每粒葡萄都是一个房屋。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory09.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p><strong>记忆点9：洒水喷头</strong></p>
+<ul>
+<li>这个就简单了，喷头里喷出的不是水，而是牛奶，这个就不配图了。（据说拍摄《雨中曲》的时候，为了增强人造雨的视觉效果，就在喷洒的雨水里掺了牛奶。）</li>
+</ul>
+</li>
+</ul>
+<p>好，这样我们就建立了记忆点和购物清单上物品的联系，其实联想的时候不需要太复杂，比如巨大的苹果放在城墙上，只要有一个画面就足够了。</p>
+<p>现在我们到了超市，想想我们要买什么来着？</p>
+<ul>
+<li>MP4=&gt;蛋壳里的MP4：鸡蛋</li>
+<li>列车=&gt;装满土豆的火车：土豆</li>
+<li>动物城=&gt;动物城的高楼大厦都变成了胡萝卜：胡萝卜</li>
+<li>棕榈树=&gt;棕榈树长在一个酸奶盒里：酸奶</li>
+<li>城墙=&gt;一个大大的苹果砸在城墙上：苹果</li>
+<li>冰原里的湖泊=&gt;装满果粒橙的大湖：橘子</li>
+<li>雪山隧道=&gt;本来要穿过的雪山隧道变成了一个大大的鸭蛋：鸭蛋</li>
+<li>蘑菇树屋=&gt;雨林区的蘑菇树屋变成了葡萄树屋：葡萄</li>
+<li>洒水喷头=&gt;花洒喷出来牛奶：牛奶</li>
+</ul>
+<p>怎么样？看似复杂繁琐，但只要我们回想起了记忆点，就会很自然的联想起与它绑定的购物清单上的商品。我们不需要靠考虑商品见的归纳分类，也不用死记硬背这9中商品，只要简单的将商品的画面与记忆点联系起来，就好比福尔摩斯在记忆宫殿的一本书上写下了一串信息，哪怕后面忘记了这条信息，也能翻书找出来，当我们到达超市早已经把购物清单忘得一干二净时，只要简单的调动一下记忆点，就能发现我们当初记录下的那串信息。湖泊里装满了果粒橙，那么这个记忆点绑定的记忆就是橘子；列车上装满了土豆，那么土豆就是要买的商品之一。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>其实到了这里你就可以凭借想象自由地尝试宫殿记忆法了。</p>
+<ul>
+<li>你可以将这条路上的记忆点拓展到100个。这时候你就可以跟小伙伴们打赌，背到圆周率小数点后100位，震惊所有人。将数字与记忆点建立联系也不复杂，相似的形状啊、谐音啊都可以成为你联想的法宝。</li>
+<li>你可以为宝贵的记忆搭建专属记忆点。只有一条线性的记忆宫殿的话，联系很容易被反复覆盖，比如我今天用15个记忆点记住购物清单，明天又用这15个记忆点背电话号码。对于某些宝贵的记忆，比如父母的生日，你可以花点时间在记忆宫殿中搭建一个主题公园、纪念雕像之类的，只用来绑定相关信息。</li>
+</ul>
+<p>当前15个记忆点的记忆宫殿看似简陋，但随着不断使用和不断对其添砖加瓦，宫殿的规模也将不断壮大。即使不是为了强化记忆、锻炼思维，单单是搭建这么一片独属于自己的思想的天地想必也是挺有成就感的吧。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://moonglowshadow.com">青椒肉丝</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://moonglowshadow.com/2025/03/06/memory-palace/">https://moonglowshadow.com/2025/03/06/memory-palace/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://moonglowshadow.com" target="_blank">PlanZ</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%B0%E5%BF%86/">记忆</a></div><div class="post-share"><div class="social-share" data-image="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory-palace-cover.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/js/social-share.min.js" defer=""></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2024/11/27/mars-survival-guide/" title="火星生存指南--火星救援"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/mars-survival-guide/mars-cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">火星生存指南--火星救援</div></div><div class="info-2"><div class="info-item-1">And if you solve enough problems, you get to come home.</div></div></div></a><a class="pagination-related" href="/2025/04/01/godot-first-game-01/" title="使用Godot制作第一个2D游戏 01"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">使用Godot制作第一个2D游戏 01</div></div><div class="info-2"><div class="info-item-1">使用Godot制作第一个2D游戏 01本教程文档依据码客二十二的Godot教程视频进行整理，相关代码以及项目素材请到原视频下方寻找。 下载Godot官网  Godot支持两种编程语言  GD Script（Godot脚本语言） C#（Unity）  在下载页面可以找到两个版本，.NET版本额外支持C#编程（普通版只支持GD Script）。 如有需求的话（遇到兼容问题），在previous version中可以找到Godot3以及更早的版本。  新建项目启动Godot，出现项目管理器页面，可以在右上角设置中切换中文语言。  点击左上角创建按钮创建新项目，设置项目名、项目路径。  完成创建后进入Godot项目菜单。  导入素材左下角的窗口是项目的文件系统（资源管理器），存放游戏项目中的美术、音频、代码等文件。  直接将要导入的素材（AssetBundle）拖动到文件系统窗口中，即可将素材导入到Godot引擎中。  AssetBundle素材包 Audio 音频 Sprites 图片 .ttf 字体     点击右上角的按钮可以更改文件系统中文件的显示模式，修改成自己习惯的即可。 点击文件系统里双击文件可以对其进行预览。 编辑器UI制作2D游戏，首先将编辑器窗口改为2D视角。  界面中间的窗口是观察窗。  拖动：按住空格+按住鼠标左键 or 按住鼠标中键（滚轮） 缩放：滚动鼠标滚轮   场景和节点游戏场景（所有都游戏元素如角色、道具、背景、音效，都要放在游戏场景中。场景中的这些元素被称为节点（子节点 Node），有的节点显示图像，有的节点播放音频，子节点也可以拥有自己的子节点。同时场景本身也是一个节点（根节点 Root...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">青椒肉丝</div><div class="author-info-description">All those moments will be lost in time, like tears in rain.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/rr-Razor"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">初次访问时部分资源可能加载速度较慢，请耐心等待、尝试刷新或者使用魔法❀❀❀</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%AB%E6%AE%BF%E8%AE%B0%E5%BF%86%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">宫殿记忆法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%AE%AB%E6%AE%BF%E8%AE%B0%E5%BF%86%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">什么是宫殿记忆法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%AB%E6%AE%BF%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97"><span class="toc-number">1.2.</span> <span class="toc-text">宫殿搭建指南</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E%E4%B9%A6"><span class="toc-number">1.3.</span> <span class="toc-text">使用说明书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">1.4.</span> <span class="toc-text">结语</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/04/01/godot-first-game-01/" title="使用Godot制作第一个2D游戏 01"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Godot制作第一个2D游戏 01"></a><div class="content"><a class="title" href="/2025/04/01/godot-first-game-01/" title="使用Godot制作第一个2D游戏 01">使用Godot制作第一个2D游戏 01</a><time datetime="2025-04-01T14:40:05.000Z" title="发表于 2025-04-01 22:40:05">2025-04-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/06/memory-palace/" title="宫殿记忆法"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory-palace-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="宫殿记忆法"></a><div class="content"><a class="title" href="/2025/03/06/memory-palace/" title="宫殿记忆法">宫殿记忆法</a><time datetime="2025-03-06T12:15:25.000Z" title="发表于 2025-03-06 20:15:25">2025-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/27/mars-survival-guide/" title="火星生存指南--火星救援"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/mars-survival-guide/mars-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="火星生存指南--火星救援"></a><div class="content"><a class="title" href="/2024/11/27/mars-survival-guide/" title="火星生存指南--火星救援">火星生存指南--火星救援</a><time datetime="2024-11-27T03:13:26.000Z" title="发表于 2024-11-27 11:13:26">2024-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/19/commands-used-4-training/" title="服务器上模型训练的常用命令"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/commands-used-4-training/com-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="服务器上模型训练的常用命令"></a><div class="content"><a class="title" href="/2024/11/19/commands-used-4-training/" title="服务器上模型训练的常用命令">服务器上模型训练的常用命令</a><time datetime="2024-11-19T08:58:24.000Z" title="发表于 2024-11-19 16:58:24">2024-11-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/12/ozymandias/" title="OZYMANDIAS 奥西曼迭斯"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/ozymandias/ozy-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OZYMANDIAS 奥西曼迭斯"></a><div class="content"><a class="title" href="/2024/11/12/ozymandias/" title="OZYMANDIAS 奥西曼迭斯">OZYMANDIAS 奥西曼迭斯</a><time datetime="2024-11-12T13:36:55.000Z" title="发表于 2024-11-12 21:36:55">2024-11-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">©2020 - 2025 By 青椒肉丝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.2.2"></script><script src="/js/main.js?v=5.2.2"></script><script src="/js/tw_cn.js?v=5.2.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"></div><div id="moon-aplayer" class="aplayer no-destroy" data-id="13355291265" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-lrctype="0" data-listfolded="true" data-mutex="true"></div><script src="/js/jquery.js"></script><script src="/js/footer.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/playlist/"]):not([href="/2024/11/27/mars-survival-guide/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章或关键字" type="text"></div></div><hr><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.2.2"></script></div></div></body></html>

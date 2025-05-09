@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>使用Godot制作第一个2D游戏 01 | PlanZ</title><meta name="author" content="青椒肉丝"><meta name="copyright" content="青椒肉丝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="使用Godot制作第一个2D游戏 01本教程文档依据码客二十二的Godot教程视频进行整理，相关代码以及项目素材请到原视频下方寻找。 下载Godot官网  Godot支持两种编程语言  GD Script（Godot脚本语言） C#（Unity）  在下载页面可以找到两个版本，.NET版本额外支持C#编程（普通版只支持GD Script）。 如有需求的话（遇到兼容问题），在previous ver">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Godot制作第一个2D游戏 01">
+<meta property="og:url" content="https://moonglowshadow.com/2025/04/01/godot-first-game-01/index.html">
+<meta property="og:site_name" content="PlanZ">
+<meta property="og:description" content="使用Godot制作第一个2D游戏 01本教程文档依据码客二十二的Godot教程视频进行整理，相关代码以及项目素材请到原视频下方寻找。 下载Godot官网  Godot支持两种编程语言  GD Script（Godot脚本语言） C#（Unity）  在下载页面可以找到两个版本，.NET版本额外支持C#编程（普通版只支持GD Script）。 如有需求的话（遇到兼容问题），在previous ver">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png">
+<meta property="article:published_time" content="2025-04-01T14:40:05.000Z">
+<meta property="article:modified_time" content="2025-04-02T08:06:02.303Z">
+<meta property="article:author" content="青椒肉丝">
+<meta property="article:tag" content="2D游戏">
+<meta property="article:tag" content="教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png"><link rel="shortcut icon" href="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/favicon_cat.png"><link rel="canonical" href="https://moonglowshadow.com/2025/04/01/godot-first-game-01/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css?v=5.2.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-PKF693RYWD"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-PKF693RYWD')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-PKF693RYWD', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '使用Godot制作第一个2D游戏 01',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/aplayer/aplayer_custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/one_pic_background/modify.css"><link rel="stylesheet" href="/css/page_custom/my_custom.css"><link rel="stylesheet" href="/css/font/font_setting.css"><link rel="stylesheet" href="/css/cursor/cursor_setting.css"><meta name="generator" content="Hexo 7.2.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/css/preloader/preloader_flash.css"><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="web_bg" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/background_tingyun.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/playlist/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/logo_cat.png" alt="Logo"><span class="site-name">PlanZ</span></a><a class="nav-page-title" href="/"><span class="site-name">使用Godot制作第一个2D游戏 01</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/playlist/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">使用Godot制作第一个2D游戏 01</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-04-01T14:40:05.000Z" title="发表于 2025-04-01 22:40:05">2025-04-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-02T08:06:02.303Z" title="更新于 2025-04-02 16:06:02">2025-04-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Godot/">Godot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="top-img" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png);"></div><article class="container post-content" id="article-container"><h1 id="使用Godot制作第一个2D游戏-01"><a href="#使用Godot制作第一个2D游戏-01" class="headerlink" title="使用Godot制作第一个2D游戏 01"></a>使用Godot制作第一个2D游戏 01</h1><p>本教程文档依据<a target="_blank" rel="noopener" href="https://space.bilibili.com/204475293">码客二十二</a>的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fuCrYFEoG?spm_id_from=333.788.videopod.sections&amp;vd_source=c5d32b76b7f25615fe49ce8530034071">Godot教程</a>视频进行整理，相关代码以及项目素材请到原视频下方寻找。</p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a target="_blank" rel="noopener" href="https://godotengine.org/">Godot官网</a></p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-01.png" alt=""></p>
+<p>Godot支持两种编程语言</p>
+<ul>
+<li>GD Script（Godot脚本语言）</li>
+<li>C#（Unity）</li>
+</ul>
+<p>在下载页面可以找到两个版本，.NET版本额外支持C#编程（普通版只支持GD Script）。</p>
+<p>如有需求的话（遇到兼容问题），在<strong>previous version</strong>中可以找到Godot3以及更早的版本。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-02.png" alt=""></p>
+<h2 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h2><p>启动Godot，出现项目管理器页面，可以在右上角设置中切换中文语言。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-03.png" alt=""></p>
+<p>点击左上角创建按钮创建新项目，设置项目名、项目路径。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-04.png" alt=""></p>
+<p>完成创建后进入Godot项目菜单。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-05.png" alt=""></p>
+<h2 id="导入素材"><a href="#导入素材" class="headerlink" title="导入素材"></a>导入素材</h2><p>左下角的窗口是项目的文件系统（资源管理器），存放游戏项目中的美术、音频、代码等文件。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-06.png" alt=""></p>
+<p>直接将要导入的素材（AssetBundle）拖动到文件系统窗口中，即可将素材导入到Godot引擎中。</p>
+<ul>
+<li>AssetBundle素材包<ul>
+<li>Audio 音频</li>
+<li>Sprites 图片</li>
+<li>.ttf 字体</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-07.png" alt=""></p>
+<p>点击右上角的按钮可以更改文件系统中文件的显示模式，修改成自己习惯的即可。</p>
+<p>点击文件系统里双击文件可以对其进行预览。</p>
+<h2 id="编辑器UI"><a href="#编辑器UI" class="headerlink" title="编辑器UI"></a>编辑器UI</h2><p>制作2D游戏，首先将编辑器窗口改为2D视角。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-08.png" alt=""></p>
+<p>界面中间的窗口是观察窗。</p>
+<ul>
+<li>拖动：<strong>按住空格+按住鼠标左键</strong> or <strong>按住鼠标中键（滚轮）</strong></li>
+<li>缩放：<strong>滚动鼠标滚轮</strong> </li>
+</ul>
+<h2 id="场景和节点"><a href="#场景和节点" class="headerlink" title="场景和节点"></a>场景和节点</h2><p>游戏场景（所有都游戏元素如角色、道具、背景、音效，都要放在游戏场景中。场景中的这些元素被称为节点（子节点 Node），有的节点显示图像，有的节点播放音频，子节点也可以拥有自己的子节点。同时场景本身也是一个节点（根节点 Root Node）。由一个场景根节点和众多元素子节点组成场景树，如下图所示。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-09.png" alt=""></p>
+<p>点击场景窗口中的<strong>2D场景</strong>创建2D根节点。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-10.png" alt=""></p>
+<p>首先向根节点中添加一个背景子节点。点击场景窗口左上角的加号（或快捷键ctrl+A），添加一个<strong>Sprite2D节点</strong>，Sprite节点被叫作图像节点或精灵节点，可以用来显示图片。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-11.png" alt=""></p>
+<p>选中创建的Sprite2D节点，在右侧的检查器中会显示该节点的各项属性，初始纹理属性（Texture）为空，在文件系统中找到森林背景图资源（ForestBackground.png），拖动到Texture属性上赋予其纹理。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-12.png" alt=""></p>
+<p>放大背景资源图片，发现此类像素图片的显示比较模糊，将左上角<strong>项目</strong>-<strong>项目设置</strong>-<strong>渲染</strong>-<strong>纹理</strong>-<strong>画布纹理</strong>-<strong>默认纹理过滤</strong>选项修改为Nearest，这种渲染方式更适合像素图的展示。</p>
+<p>点击观察窗左上角的移动按钮（或快捷键W）切换到移动模式，此时可以移动场景中的背景图片，使用按住Shift再进行拖动则只能在水平或垂直方向上移动图片。ctrl+Z可以撤销操作。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-13.png" alt=""></p>
+<p>在场景窗口中，将显示背景图片的Sprite2D节点复制一份（快捷操作：选中节点然后ctrl+D），然后将两个节点分别命名为Background1和Background2，分别选中两个节点并将其分别移动到窗口y轴的两侧，组成游戏的背景。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-14.png" alt=""></p>
+<p>将当前场景进行保存，ctrl+S唤出保存页面，将当前场景命名为Game.tscn，项目资源目录中新建一个场景文件夹Scenes用来专门保存场景文件。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-15.png" alt=""></p>
+<p>保存完成后，在文件系统窗口中新建的Scenes文件夹下可以找到保存的游戏场景。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-16.png" alt=""></p>
+<p>此时可以将当前游戏场景关闭，并双击Game.tscn场景文件，可以看到场景窗口和观察窗口中又重新唤出了我们刚才创建的节点和背景图展示。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-17.png" alt=""></p>
+<p>点击编辑器右上方三角按钮试着运行游戏（快捷键F5），由于未定义主场景，选择当前场景运行。此时游戏画面中只显示了背景的一个角。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-18.png" alt=""></p>
+<p>因为在2D游戏中，Godot默认渲染右下角蓝色框内的元素，这就是为什么只能看到背景的一个角。需要添加一个相机节点（Camera）将背景渲染在游戏窗口正中央。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-19.png" alt=""></p>
+<p>向场景树中添加Camera2D节点，在观察窗中发现出现了紫色边框，表示新添加的Camera节点的渲染范围。在检查器窗口中调整Camera节点的Zoom属性来调整相机的渲染范围，然后再次启动游戏场景测试。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-20.png" alt=""></p>
+<p>当场景中的节点较多时容易误操作其他节点，可以将暂时不需要修改的节点锁定（观察窗上方的锁按钮或快捷键ctrl+shift+L），进而防止在拖动其他节点时误触这些节点。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-21.png" alt=""></p>
+<h2 id="玩家场景"><a href="#玩家场景" class="headerlink" title="玩家场景"></a>玩家场景</h2><p>完成<strong>背景场景</strong>的创建，接下来继续添加玩家。玩家也可以通过节点的方式直接添加到背景场景中（当前的Node2D根节点下），但通常是将玩家保存为一个独立的<strong>玩家场景</strong>，再在背景场景中调用玩家场景。其原因是，依据面向对象的原则，玩家这种元素会多次出现在不同的场景中，将玩家保存为一个独立场景的好处是，当我们需要修改玩家的某项属性时（如生命值上限、基础速度等），只需在玩家场景中进行修改，其他调用玩家场景的场景就会自动对修改做出反应，而不需要我们对每个场景中的玩家元素进行修改了。</p>
+<p>点击观察窗上方的加号创建一个新场景，在新场景中创建一个<strong>CharacterBody2D</strong>节点作为玩家场景的根节点。该节点的一些属性使其可以在2D游戏场景中模拟玩家的移动和物理碰撞，适合作为玩家节点存在。为了与其他场景进行区分，可以将该节点重命名为Player。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-22.png" alt=""></p>
+<p>向玩家场景中添加玩家图片节点，这次添加一个<strong>Animated Sprite 2D</strong>节点（2D动画节点，相较于普通的图片节点可以使图片动起来，动画的本质是将多帧连续的图像快速播放）。选中Animated Sprite 2D节点，在检查器中找到Sprite Frames属性，选择新建SpriteFrames。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-23.png" alt=""></p>
+<p>在下方出现的动画窗口中（如果没出现，点击一下Sprite Frames属性中刚刚新建的SpriteFrames）选择网格状按钮（快捷键ctrl+shift+O）为玩家添加动画帧。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-24.png" alt=""></p>
+<p>找到游戏资源中的玩家图片包。在游戏中角色动画一般被存放在一种叫SpriteSheet的图片表中，图片表会保存玩家每一帧下的不同动作。调整右上角的参数将该图片表水平分为6份，垂直分为12份，来让Godot自动切割这张图片表获取每一帧的独立图片。一次选中第一行的四张图片，这四帧是玩家角色的待机动画，将其添加到节点中。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-26.png" alt=""></p>
+<p>点击动画帧窗口中的一系列按钮预览角色动画，同时也可以对动画播放的速度（帧率）进行调整，修改动画的名称为idle（待机动画）便于之后区分，最后开启自动播放，这样在游戏一开始时玩家的角色才会自动播放待机动画。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-27.png" alt=""></p>
+<p>完成以上操作后保存玩家场景（Player.tscn），然后回到主场景（背景场景Game.tscn）中，将玩家场景添加进背景场景。点击场景窗口左上角的链接按钮，将玩家场景实例化为背景场景中的一个子节点。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-28.png" alt=""></p>
+<p>现在玩家已经作为一个子节点添加到了游戏场景中，按下F5启动游戏查看效果，可以看到玩家的待机动画已经可以正常播放了（如果玩家没有动可能是在添加动画帧时没有开启自动播放）。</p>
+<p><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/godot-first-game-01/godot-29.png" alt=""></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://moonglowshadow.com">青椒肉丝</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://moonglowshadow.com/2025/04/01/godot-first-game-01/">https://moonglowshadow.com/2025/04/01/godot-first-game-01/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://moonglowshadow.com" target="_blank">PlanZ</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/2D%E6%B8%B8%E6%88%8F/">2D游戏</a><a class="post-meta__tags" href="/tags/%E6%95%99%E7%A8%8B/">教程</a></div><div class="post-share"><div class="social-share" data-image="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/js/social-share.min.js" defer=""></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/03/06/memory-palace/" title="宫殿记忆法"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory-palace-cover.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">宫殿记忆法</div></div><div class="info-2"><div class="info-item-1">到最后你们只会记得我曾经被狗咬过。</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">青椒肉丝</div><div class="author-info-description">All those moments will be lost in time, like tears in rain.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/rr-Razor"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">初次访问时部分资源可能加载速度较慢，请耐心等待、尝试刷新或者使用魔法❀❀❀</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Godot%E5%88%B6%E4%BD%9C%E7%AC%AC%E4%B8%80%E4%B8%AA2D%E6%B8%B8%E6%88%8F-01"><span class="toc-number">1.</span> <span class="toc-text">使用Godot制作第一个2D游戏 01</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B0%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.2.</span> <span class="toc-text">新建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E7%B4%A0%E6%9D%90"><span class="toc-number">1.3.</span> <span class="toc-text">导入素材</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%BE%91%E5%99%A8UI"><span class="toc-number">1.4.</span> <span class="toc-text">编辑器UI</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E5%92%8C%E8%8A%82%E7%82%B9"><span class="toc-number">1.5.</span> <span class="toc-text">场景和节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%A9%E5%AE%B6%E5%9C%BA%E6%99%AF"><span class="toc-number">1.6.</span> <span class="toc-text">玩家场景</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/04/01/godot-first-game-01/" title="使用Godot制作第一个2D游戏 01"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Godot制作第一个2D游戏 01"></a><div class="content"><a class="title" href="/2025/04/01/godot-first-game-01/" title="使用Godot制作第一个2D游戏 01">使用Godot制作第一个2D游戏 01</a><time datetime="2025-04-01T14:40:05.000Z" title="发表于 2025-04-01 22:40:05">2025-04-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/06/memory-palace/" title="宫殿记忆法"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory-palace-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="宫殿记忆法"></a><div class="content"><a class="title" href="/2025/03/06/memory-palace/" title="宫殿记忆法">宫殿记忆法</a><time datetime="2025-03-06T12:15:25.000Z" title="发表于 2025-03-06 20:15:25">2025-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/27/mars-survival-guide/" title="火星生存指南--火星救援"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/mars-survival-guide/mars-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="火星生存指南--火星救援"></a><div class="content"><a class="title" href="/2024/11/27/mars-survival-guide/" title="火星生存指南--火星救援">火星生存指南--火星救援</a><time datetime="2024-11-27T03:13:26.000Z" title="发表于 2024-11-27 11:13:26">2024-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/19/commands-used-4-training/" title="服务器上模型训练的常用命令"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/commands-used-4-training/com-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="服务器上模型训练的常用命令"></a><div class="content"><a class="title" href="/2024/11/19/commands-used-4-training/" title="服务器上模型训练的常用命令">服务器上模型训练的常用命令</a><time datetime="2024-11-19T08:58:24.000Z" title="发表于 2024-11-19 16:58:24">2024-11-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/12/ozymandias/" title="OZYMANDIAS 奥西曼迭斯"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/ozymandias/ozy-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OZYMANDIAS 奥西曼迭斯"></a><div class="content"><a class="title" href="/2024/11/12/ozymandias/" title="OZYMANDIAS 奥西曼迭斯">OZYMANDIAS 奥西曼迭斯</a><time datetime="2024-11-12T13:36:55.000Z" title="发表于 2024-11-12 21:36:55">2024-11-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">©2020 - 2025 By 青椒肉丝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.2.2"></script><script src="/js/main.js?v=5.2.2"></script><script src="/js/tw_cn.js?v=5.2.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><div id="moon-aplayer" class="aplayer no-destroy" data-id="13355291265" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-lrctype="0" data-listfolded="true" data-mutex="true"></div><script src="/js/jquery.js"></script><script src="/js/footer.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/playlist/"]):not([href="/2024/11/27/mars-survival-guide/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章或关键字" type="text"></div></div><hr><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.2.2"></script></div></div></body></html>

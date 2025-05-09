@@ -1,0 +1,363 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Java基础笔记8（数组） | PlanZ</title><meta name="author" content="青椒肉丝"><meta name="copyright" content="青椒肉丝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Java基础笔记8（数组）定义 数组是相同类型的数据的有序集合 数组描述的是相同类型的若干个数据，按照一定的先后次序排列组合而成 每一个数据称作一个数组元素，每个数组元素可以通过下标来访问  声明 必须声明数组变量，才能在程序中使用数组。 123dataType[] nums1; //推荐写法或dataType nums2[];  Java语言中使用new来创建数组 1234dataType[]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础笔记8（数组）">
+<meta property="og:url" content="https://moonglowshadow.com/2020/12/26/java-notes-08/index.html">
+<meta property="og:site_name" content="PlanZ">
+<meta property="og:description" content="Java基础笔记8（数组）定义 数组是相同类型的数据的有序集合 数组描述的是相同类型的若干个数据，按照一定的先后次序排列组合而成 每一个数据称作一个数组元素，每个数组元素可以通过下标来访问  声明 必须声明数组变量，才能在程序中使用数组。 123dataType[] nums1; //推荐写法或dataType nums2[];  Java语言中使用new来创建数组 1234dataType[]">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_2.png">
+<meta property="article:published_time" content="2020-12-26T03:28:11.000Z">
+<meta property="article:modified_time" content="2025-03-22T15:32:31.953Z">
+<meta property="article:author" content="青椒肉丝">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_2.png"><link rel="shortcut icon" href="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/favicon_cat.png"><link rel="canonical" href="https://moonglowshadow.com/2020/12/26/java-notes-08/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css?v=5.2.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-PKF693RYWD"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-PKF693RYWD')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-PKF693RYWD', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java基础笔记8（数组）',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/aplayer/aplayer_custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/one_pic_background/modify.css"><link rel="stylesheet" href="/css/page_custom/my_custom.css"><link rel="stylesheet" href="/css/font/font_setting.css"><link rel="stylesheet" href="/css/cursor/cursor_setting.css"><meta name="generator" content="Hexo 7.2.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/css/preloader/preloader_flash.css"><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="web_bg" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/background_tingyun.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/playlist/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_2.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/logo_cat.png" alt="Logo"><span class="site-name">PlanZ</span></a><a class="nav-page-title" href="/"><span class="site-name">Java基础笔记8（数组）</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/playlist/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Java基础笔记8（数组）</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-12-26T03:28:11.000Z" title="发表于 2020-12-26 11:28:11">2020-12-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-22T15:32:31.953Z" title="更新于 2025-03-22 23:32:31">2025-03-22</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java%E7%AC%94%E8%AE%B0/">Java笔记</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><div class="top-img" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_2.png);"></div><article class="container post-content" id="article-container"><h1 id="Java基础笔记8（数组）"><a href="#Java基础笔记8（数组）" class="headerlink" title="Java基础笔记8（数组）"></a>Java基础笔记8（数组）</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><ul>
+<li>数组是<strong>相同类型</strong>的数据的有序集合</li>
+<li>数组描述的是相同类型的若干个数据，按照一定的先后次序排列组合而成</li>
+<li>每一个数据称作一个数组元素，每个数组元素可以通过下标来访问</li>
+</ul>
+<h2 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h2><ul>
+<li><p>必须声明数组变量，才能在程序中使用数组。</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dataType[] nums1; <span class="comment">//推荐写法</span></span><br><span class="line">或</span><br><span class="line">dataType nums2[];</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>Java语言中使用new来创建数组</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dataType[] nums = <span class="keyword">new</span> <span class="title class_">dataType</span>[arraySize];</span><br><span class="line">或</span><br><span class="line">dataType[] nums = <span class="keyword">new</span> <span class="title class_">dataType</span>[]{element1，element2，element3};</span><br><span class="line">(dataType[] nums = {element1，element2，element3};)</span><br></pre></td></tr></tbody></table></figure>
+</li>
+<li><p>数组赋值</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nums[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">nums[<span class="number">1</span>] = <span class="number">23</span>;</span><br><span class="line">nums[<span class="number">5</span>] = <span class="number">6</span>;</span><br></pre></td></tr></tbody></table></figure>
+</li>
+</ul>
+<h2 id="数组特点"><a href="#数组特点" class="headerlink" title="数组特点"></a>数组特点</h2><ul>
+<li>长度确定，数组一旦被创建，其大小就不可改变</li>
+<li>元素可以使任意相同数据类型，包括基本类型和引用类型</li>
+<li>数组变量属于引用类型，数组也可以看成是对象，数组中每个元素相当于该对象的成员变量。</li>
+<li>数组本身就是对象，Java对象保存在堆中，因此数组无论是保存原始类型还是其他数据类型，数组对象本身是在堆中的</li>
+</ul>
+<h2 id="Java内存"><a href="#Java内存" class="headerlink" title="Java内存"></a>Java内存</h2><ul>
+<li><p>堆</p>
+<ul>
+<li>存放new的对象和数组</li>
+<li>可以被所有的线程共享，不会存放别的对象引用</li>
+</ul>
+</li>
+<li><p>栈</p>
+<ul>
+<li>存放基本数据类型（包含这个基本类型的具体数值）</li>
+<li>引用对象的变量（存放这个引用在堆里的具体地址）</li>
+</ul>
+</li>
+<li>方法区<ul>
+<li>可以被所有线程共享</li>
+<li>包含所有的class和static变量</li>
+</ul>
+</li>
+</ul>
+<h2 id="三种初始化状态"><a href="#三种初始化状态" class="headerlink" title="三种初始化状态"></a>三种初始化状态</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//静态初始化</span></span><br><span class="line"><span class="type">int</span>[] a = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>};</span><br><span class="line"><span class="comment">//动态初始化</span></span><br><span class="line"><span class="type">int</span>[] a = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">3</span>];</span><br><span class="line">a[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">a[<span class="number">1</span>] = <span class="number">2</span>;</span><br><span class="line">a[<span class="number">2</span>] = <span class="number">3</span>;</span><br><span class="line"><span class="comment">//默认初始化</span></span><br><span class="line"><span class="comment">//数组是引用类型，它的元素相当于类的示例变量</span></span><br><span class="line"><span class="comment">//因此数组一经分配空间，其中每个元素也被按照实例变量同样的方式被隐式初始化</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="数组边界"><a href="#数组边界" class="headerlink" title="数组边界"></a>数组边界</h2><p>合法下标区间 [0,length-1] ,如果越界就会报错：ArrayIndexOutOfBoundsException（数组下标越界异常）</p>
+<h2 id="数组使用"><a href="#数组使用" class="headerlink" title="数组使用"></a>数组使用</h2><h3 id="for-each循环"><a href="#for-each循环" class="headerlink" title="for each循环"></a>for each循环</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arrays = {<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>};</span><br><span class="line"><span class="comment">//普通循环</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i &lt; arrays.length;i++){</span><br><span class="line">    System.out.println(arrays[i]);</span><br><span class="line">}</span><br><span class="line"><span class="comment">//for each循环</span></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> array : arrays){</span><br><span class="line">    System.out.println(array);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="数组作为参数、返回值"><a href="#数组作为参数、返回值" class="headerlink" title="数组作为参数、返回值"></a>数组作为参数、返回值</h3><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//打印数组</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">(<span class="type">int</span> nums)</span>{</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> num : nums){</span><br><span class="line">    	System.out.println(num);</span><br><span class="line">	}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//生成反转数组</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span>[] reverse(<span class="type">int</span>[] nums) {</span><br><span class="line">    <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> nums.length;</span><br><span class="line">    <span class="type">int</span>[] ans = <span class="keyword">new</span> <span class="title class_">int</span>[len];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>,j = len - <span class="number">1</span>; i &lt; len; i++,j--) {</span><br><span class="line">        ans[j] = nums[i];</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h2><p>多维数组可以看成是数组的数组，比如二维数组就是一个特殊的一维数组，其中每一个元素都是一个一维数组</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二维数组 </span></span><br><span class="line"><span class="type">int</span>[][] a = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">2</span>][<span class="number">3</span>];</span><br><span class="line"><span class="type">int</span>[][] b = {{<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>},{<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>}};</span><br><span class="line"><span class="comment">//a、b都可以看成一个两行三列的数组</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="稀疏数组（压缩）"><a href="#稀疏数组（压缩）" class="headerlink" title="稀疏数组（压缩）"></a>稀疏数组（压缩）</h2><figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//压缩以下数组</span></span><br><span class="line"><span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">7</span></span><br><span class="line"><span class="number">1</span> <span class="number">0</span> <span class="number">3</span> <span class="number">0</span> <span class="number">0</span></span><br><span class="line"><span class="number">2</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></tbody></table></figure>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>下标</th>
+<th>行</th>
+<th>列</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[0]</td>
+<td>3（原数组有几行）</td>
+<td>5（原数组有几列）</td>
+<td>4（除0以外其他数字总数）</td>
+</tr>
+<tr>
+<td>[1]</td>
+<td>0</td>
+<td>4</td>
+<td>7</td>
+</tr>
+<tr>
+<td>[2]</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>[3]</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>[4]</td>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span> {</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> {</span><br><span class="line">        <span class="comment">//原始数组</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">col</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">        <span class="type">int</span> array[][] = <span class="keyword">new</span> <span class="title class_">int</span>[row][col];</span><br><span class="line">        array[<span class="number">0</span>][<span class="number">4</span>] = <span class="number">7</span>;</span><br><span class="line">        array[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        array[<span class="number">1</span>][<span class="number">2</span>] = <span class="number">3</span>;</span><br><span class="line">        array[<span class="number">2</span>][<span class="number">0</span>] = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"打印原始数组"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[] ints : array) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i : ints) {</span><br><span class="line">                System.out.print(i + <span class="string">"\t"</span>);</span><br><span class="line">            }</span><br><span class="line">            System.out.println();</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="comment">//计算原始数组中非0的数的总数</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">sum</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[] ints : array) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i : ints) {</span><br><span class="line">                <span class="keyword">if</span> (i != <span class="number">0</span>) {</span><br><span class="line">                    sum++;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="comment">//稀疏数组</span></span><br><span class="line">        <span class="type">int</span>[][] sparseArray = <span class="keyword">new</span> <span class="title class_">int</span>[sum + <span class="number">1</span>][<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">        sparseArray[<span class="number">0</span>][<span class="number">0</span>] = row;</span><br><span class="line">        sparseArray[<span class="number">0</span>][<span class="number">1</span>] = col;</span><br><span class="line">        sparseArray[<span class="number">0</span>][<span class="number">2</span>] = sum;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; array.length; i++) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; array[i].length; j++) {</span><br><span class="line">                <span class="keyword">if</span> (array[i][j] != <span class="number">0</span>) {</span><br><span class="line">                    sparseArray[count][<span class="number">0</span>] = i;</span><br><span class="line">                    sparseArray[count][<span class="number">1</span>] = j;</span><br><span class="line">                    sparseArray[count][<span class="number">2</span>] = array[i][j];</span><br><span class="line">                    count++;</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"打印稀疏数组"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[] ints : sparseArray) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i : ints) {</span><br><span class="line">                System.out.print(i + <span class="string">"\t"</span>);</span><br><span class="line">            }</span><br><span class="line">            System.out.println();</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        <span class="comment">//还原稀疏数组</span></span><br><span class="line">        <span class="type">int</span>[][] array2 = <span class="keyword">new</span> <span class="title class_">int</span>[sparseArray[<span class="number">0</span>][<span class="number">0</span>]][sparseArray[<span class="number">0</span>][<span class="number">1</span>]];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; sparseArray.length; i++) {</span><br><span class="line">            array2[sparseArray[i][<span class="number">0</span>]][sparseArray[i][<span class="number">1</span>]] = sparseArray[i][<span class="number">2</span>];</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"打印还原数组"</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span>[] ints : array2) {</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> i : ints) {</span><br><span class="line">                System.out.print(i + <span class="string">"\t"</span>);</span><br><span class="line">            }</span><br><span class="line">            System.out.println();</span><br><span class="line">        }</span><br><span class="line"></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">}</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">输出：</span></span><br><span class="line"><span class="comment">打印原始数组</span></span><br><span class="line"><span class="comment">0	0	0	0	7	</span></span><br><span class="line"><span class="comment">1	0	3	0	0	</span></span><br><span class="line"><span class="comment">2	0	0	0	0	</span></span><br><span class="line"><span class="comment">打印稀疏数组</span></span><br><span class="line"><span class="comment">3	5	4	</span></span><br><span class="line"><span class="comment">0	4	7	</span></span><br><span class="line"><span class="comment">1	0	1	</span></span><br><span class="line"><span class="comment">1	2	3	</span></span><br><span class="line"><span class="comment">2	0	2	</span></span><br><span class="line"><span class="comment">打印还原数组</span></span><br><span class="line"><span class="comment">0	0	0	0	7	</span></span><br><span class="line"><span class="comment">1	0	3	0	0	</span></span><br><span class="line"><span class="comment">2	0	0	0	0	</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></tbody></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://moonglowshadow.com">青椒肉丝</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://moonglowshadow.com/2020/12/26/java-notes-08/">https://moonglowshadow.com/2020/12/26/java-notes-08/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://moonglowshadow.com" target="_blank">PlanZ</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a></div><div class="post-share"><div class="social-share" data-image="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_2.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/sharejs/dist/js/social-share.min.js" defer=""></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2020/12/25/java-notes-07/" title="Java基础笔记7（方法）"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_8.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Java基础笔记7（方法）</div></div><div class="info-2"><div class="info-item-1">Java基础笔记7（方法）方法定义 方法是语句的集合，它们在一起执行一个功能 方法是解决一类问题的步骤的有序组合 方法包含于类或对象中 方法在程序中被创建，在其他地方被引用   方法是一段用来完成特定功能的代码片段 方法包含一个方法头和一个方法体 修饰符：可选，告诉编译器如何调用该方法。定义了该方法的访问类型 返回值类型：方法返回值的数据类型 方法名：方法的名称，方法名和参数表共同构成方法签名 参数类型：方法被调用时，传递值给参数。这个值被称为实参或变量。参数列表是指方法的参数类型、顺序和参数的个数。参数是可选的，方法可以不包含参数 形式参数：在方法被调用时用于接收外界输入数据 实参：调用方法时实际传给方法的数据   方法体：方法体包含具体的语句，定义该方法的功能    123456修饰符 返回值类型 方法名（参数类型 参数名）{    ...    方法体    ...    return 返回值;} 方法调用 调用方法：对象名.方法名（实参列表）  方法返回一个值时，方法调用常被当做一个值，如 1double num = Math.pow(2, 3);//8.0  方法返回值是void时，方法调用直接作为一条语句，如 1System.out.println();   值传递和引用传递 值传递：在调用函数时将实际参数复制一份副本传递到函数中，在函数中如果对参数进行修改，将不会影响到实际参数。 引用传递：在调用函数时将实际参数的地址传递到函数中，实参和形参在内存上指向了同一块区域，在函数中对参数所进行的修改，将影响到实际参数。  Java是值传递123456789101112131415161718192021//例一public class test {	public static void main(String[] args) {		int s = 10;		change(s); 		System.out.println("实参s：" + s);	}	public static void change(int x) { 		x++;		System.out.println("形参x：" +...</div></div></div></a><a class="pagination-related" href="/2021/01/02/java-notes-09/" title="Java基础笔记9（类与对象）"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_3.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Java基础笔记9（类与对象）</div></div><div class="info-2"><div class="info-item-1">Java基础笔记9（类与对象）面向对象 面向对象编程（Object-Oriented Programing，OOP） 面向对象编程的本质：以类的方式组织代码，以对象的形式组织（封装）数据 三大特性 封装 继承 多态   对象是具体的事物，类是对对象的抽象 从代码运行的角度，先有类再有对象，类是对象的模板  类 属性： 又叫字段（Field）或成员变量 默认初始化 数字：0、0.0 char：u0000 boolean：false 引用：null   修饰符 属性类型 属性名 = 属性值   方法 修饰符 返回类型 方法名（）{ 方法体 }    123456789101112131415161718public class 类名 {    //属性        //方法}//学生类(Student类)public class Student {        private String name;//属性    public String getName() { return name; }//方法        public void setName() { //方法         this.name = name;     }} 对象 对象的创建和使用 使用new关键字创建对象 Student stu = new Student(); 对象的属性stu.name;   前提属性name不是私有的 对象的方法stu.getName();    12345678910//类实例化后会返回一个自己的对象//zhangsan、lisi就是Student类的具体实例Student zhangsan = new Student();Student lisi = new...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2021/01/21/gui-programming/" title="GUI编程"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/gui-programming/gui-cover.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-21</div><div class="info-item-2">GUI编程</div></div><div class="info-2"><div class="info-item-1">‌Java GUI编程‌是通过使用Java的图形用户界面（GUI）工具包来实现桌面应用程序的界面设计。</div></div></div></a><a class="pagination-related" href="/2020/12/13/java-notes-01/" title="Java基础笔记1（介绍、环境搭建与卸载）"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_9.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-13</div><div class="info-item-2">Java基础笔记1（介绍、环境搭建与卸载）</div></div><div class="info-2"><div class="info-item-1">Java基础笔记1（介绍、环境搭建与卸载）Java发展史1972年C诞生 贴近硬件，运行极快，效率极高 操作系统，编译器，数据库，网络系统等 指针和内存管理  1982年C++诞生 面向对象 兼容C 图形领域、游戏等  新语言 语法像C 没有指针 没有内存管理 真正的可移植性，一次编写，到处运行 面向对象 类型安全 高质量类库  Java初生 1995年的网页简单而粗糙，缺乏互动性  图形界面程序（Applet）  Bill Gates说：这是迄今为止设计的最好的语言！ Java 2 标准版（J2SE）：占领桌面 Java 2 移动版（J2ME）：占领手机 Java 2 企业版（J2EE）：占领服务器 大量巨头加入  Java发展 基于Java开发了大量平台、系统、工具 构建工具：Ant, Maven, Jekins 应用服务器：Tomcat, Jetty, Jboss, Websphere, weblogic(三高问题：高可用、高性能、高并发) Web开发：Struts, Spring, Hibernate, myBatis 开发工具：Eclipse, Netbean, intellij idea, Jbuilder ……   2006：Hadoop（大数据领域） 2008：Android（手机端）  Java特性和优势 简单性 面向对象 可以执行 高性能 分布式 动态性（反射） 多线程 安全性 健壮性  Java三大版本 JavaSE：标准版（桌面程序、控制台开发） JavaME：嵌入式开发（手机、小家电） JavaEE：企业级开发（Web端，服务器开发）  JDK、JRE、JVM JDK：Java Development Kit JRE：Java Runtime Environment JVM：Java Virtual Machine   Java环境搭建环境搭建 下载电脑对应版本的JDK  安装JDK（建议准备一个存放环境的文件夹）   配置环境变量 右键点击计算机-属性-高级系统设置-高级-环境变量 或 控制面板-系统安全-系统-高级系统设置-高级-环境变量   新建JAVA_HOME系统变量 变量名：JAVA_HOME 变量值：（JDK安装目录）   编辑PATH系统变量 新建...</div></div></div></a><a class="pagination-related" href="/2020/12/16/java-notes-04/" title="Java基础笔记4（变量常量、命名规范、运算符）"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_2.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-16</div><div class="info-item-2">Java基础笔记4（变量常量、命名规范、运算符）</div></div><div class="info-2"><div class="info-item-1">Java基础笔记4（变量常量、命名规范、运算符）变量作用域 类变量（静态变量） 在方法外 从属类 无需初始化，有默认值   实例变量（对象变量） 在方法外 从属对象 无需初始化，有默认值   局部变量 在方法内 只在方法内有效 必须声明和初始化    12345678public class Test{    static int a = 0;	//类变量    int b = 0;			//实例变量        public void method(){        int c = 0;		//局部变量    }} 类变量和实例变量的区别类变量是所有对象共有，其中一个对象将它值改变，其他对象得到的就是改变后的结果。 实例变量属对象私有，某一个对象将其值改变，不影响其他对象。 常量初始化后不能改变值 常量一般用大写字符 1final double PI = 3.14; 命名规范 变量、方法、类名：见名知意 类成员变量：小驼峰（lastName） 局部变量：小驼峰 常量：大写（MAX_VALUE） 类名：大驼峰 方法名：小驼峰  运算符 算术运算符：+,-,*,/,%,++,— 赋值运算符：= 关系运算符：&gt;,&lt;,&gt;=,&lt;=,==,!=,instanceof(测试它左边的对象是否是它右边的类的实例，返回 boolean 的数据类型。) 逻辑运算符：&amp;&amp;,||,! 位运算符：&amp;,|,^,~,&gt;&gt;,&lt;&lt;,&gt;&gt;&gt; 条件运算符：? :  扩展赋值运算符：+=,-=,*=,/=   12345678910long a = 2333333333333L;int b = 2333;short c = 233;byte d = 23;System.out.println(a+b+c+d);	//longSystem.out.println(b+c+d);		//intSystem.out.println(c+d);		//int //自动升为混合运算类型中最高类型//整数类型操作中，操作数中有long，结果也为long，操作数中没有long时，结果为int 123byte b = 3;b = b +...</div></div></div></a><a class="pagination-related" href="/2020/12/13/java-notes-02/" title="Java基础笔记2（编译型和解释型）"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_5.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-13</div><div class="info-item-2">Java基础笔记2（编译型和解释型）</div></div><div class="info-2"><div class="info-item-1">Java基础笔记2（编译型和解释型）编译型和解释型计算机不能理解高级语言，只能直接理解机器语言，所以使用任何高级语言编写的程序若想被计算机运行，都必须将其转换成计算机语言，也就是机器码。而这种转换的方式有两种：编译型和解释型。 编译型一次编译，多次执行。（运行速度快，跨平台性差） 源程序执行前编译，只编译一次，以后运行时不需要编译。 使用专门的编译器，针对特定的平台，将高级语言源代码一次性的编译成可被该平台硬件执行的机器码，并包装成该平台所能识别的可执行性程序的格式。 编译型语言：C、C++、Objective等 解释型边解释，边执行。（跨平台性好，效率较低） 直接将源代码解释成机器码并立即执行。 使用专门的解释器，逐行解释源程序为特定平台的机器码并立即执行。代码在执行时才被解释器一行行动态翻译和执行，而不是在执行之前就完成翻译。 解释型语言：Python等 JAVA程序运行机制Java既具有编译型特点，也具有解释型特点。 因为有JVM的存在，Java可以一次编译，到处运行。 Java编译型特点：所有的Java代码都是要编译的成字节码文件。 Java解释型特点：编译后的Java代码不能直接运行，需要在JVM上进行解释运行。（或编译运行）  </div></div></div></a><a class="pagination-related" href="/2020/12/13/java-notes-03/" title="Java基础笔记3（注释、标识符、数据类型、类型转换）"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_9.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-13</div><div class="info-item-2">Java基础笔记3（注释、标识符、数据类型、类型转换）</div></div><div class="info-2"><div class="info-item-1">Java基础笔记3（注释、标识符、数据类型、类型转换）注释单行注释1//单行注释 多行注释1234/*多行注释多行注释*/ 文档注释1234/** * @Description Helloworld * @Author PlanZ */ IDEA自定义注释样式  标识符关键字    abstract assert boolean break byte     case catch char class const   continue default do double else   enum extends final finally float   for goto if implements import   instanceof int interface long native   new package private protected public   return strictfp short static super   switch synchronized this throw throws   transient try void volatile while     标识符 所有的标识符以字母（A-Z或a-z），美元符（$），下划线（_）开始，不可以以数字开头 首字母之后可以是字母（A-Z或a-z），美元符（$），下划线（_），数字（0-9）的任意组合 不能使用关键字作为变量名或方法名 大小写敏感  数据类型强类型语言要求变量的使用要严格符合规定，所有变量必须先定义后使用 弱类型语言弱类型语言也称为弱类型定义语言。与强类型语言定义相反。 vb，php等就属于弱类型语言。 Java的数据类型分为两大类基本类型(Primitive Type)  数值类型 整数类型 byte占1个字节范围：-128-127 short占2个字节范围：-32768-32767 int占4个字节范围：-2147483648-2147483647 long占8个字节范围：-9223372036854775808-9223372036854775807   浮点类型 float占4个字节 double占8个字节   字符类型 char占2个字节     boolean类型 boolean占1位，其值只有true和false    引用类型(Reference...</div></div></div></a><a class="pagination-related" href="/2020/12/19/java-notes-05/" title="Java基础笔记5（包、JavaDoc）"><img class="cover" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_5.png" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2020-12-19</div><div class="info-item-2">Java基础笔记5（包、JavaDoc）</div></div><div class="info-2"><div class="info-item-1">Java基础笔记5（包、JavaDoc）包 一般使用公司域名倒置作为包名，如  com.baidu.www com.baidu.baike com.baidu.blog   包中的类要在类前面加上package 包名，如 1package com.baudu.www	//注：要放在代码最上面  导入其他包中的类时使用import，如 1import java.util.*	//*表示导入该包下所有的类   JavaDoc javadoc命令用来生成自己的API文档  参数  @author 作者名 @version 版本号 @since 指明需要最早使用的jdk版本 @param 参数名 @return 返回值 @throws 抛出异常情况   如下： 1234567891011121314151617181920package com.hollowshadow;/** * @author Haunt * @version 1.0 * @since 1.8 */public class Student {    String name;    /**     * @author Haunt     * @param s     * @return void     * @throws Exception     */    public void setName(String s) throws Exception {        this.name = s;    }} 12打开命令行，执行javadoc命令javadoc -encoding UTF-8 -charset UTF-8 Student.java  打开类所在目录，发现自动生成html等文件，打开index.html，即javadoc生成的API文档    IDEA中使用JavaDoc 菜单 Tools -&gt; Generate JavaDoc    进行配置   Generate JavaDoc scope：使用JavaDoc生成文档的范围  Output directory：生成的文档所在的目录  Locale：语言版本，默认英文或者是当前操作系统语言，zh_CN中文  Other command line...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">青椒肉丝</div><div class="author-info-description">All those moments will be lost in time, like tears in rain.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/rr-Razor"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">初次访问时部分资源可能加载速度较慢，请耐心等待、尝试刷新或者使用魔法❀❀❀</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B08%EF%BC%88%E6%95%B0%E7%BB%84%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">Java基础笔记8（数组）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E"><span class="toc-number">1.2.</span> <span class="toc-text">声明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E7%89%B9%E7%82%B9"><span class="toc-number">1.3.</span> <span class="toc-text">数组特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%86%85%E5%AD%98"><span class="toc-number">1.4.</span> <span class="toc-text">Java内存</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E5%88%9D%E5%A7%8B%E5%8C%96%E7%8A%B6%E6%80%81"><span class="toc-number">1.5.</span> <span class="toc-text">三种初始化状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E8%BE%B9%E7%95%8C"><span class="toc-number">1.6.</span> <span class="toc-text">数组边界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E4%BD%BF%E7%94%A8"><span class="toc-number">1.7.</span> <span class="toc-text">数组使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#for-each%E5%BE%AA%E7%8E%AF"><span class="toc-number">1.7.1.</span> <span class="toc-text">for each循环</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E4%BD%9C%E4%B8%BA%E5%8F%82%E6%95%B0%E3%80%81%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">1.7.2.</span> <span class="toc-text">数组作为参数、返回值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="toc-number">1.8.</span> <span class="toc-text">多维数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%80%E7%96%8F%E6%95%B0%E7%BB%84%EF%BC%88%E5%8E%8B%E7%BC%A9%EF%BC%89"><span class="toc-number">1.9.</span> <span class="toc-text">稀疏数组（压缩）</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/04/01/godot-first-game-01/" title="使用Godot制作第一个2D游戏 01"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Godot制作第一个2D游戏 01"></a><div class="content"><a class="title" href="/2025/04/01/godot-first-game-01/" title="使用Godot制作第一个2D游戏 01">使用Godot制作第一个2D游戏 01</a><time datetime="2025-04-01T14:40:05.000Z" title="发表于 2025-04-01 22:40:05">2025-04-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/06/memory-palace/" title="宫殿记忆法"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory-palace-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="宫殿记忆法"></a><div class="content"><a class="title" href="/2025/03/06/memory-palace/" title="宫殿记忆法">宫殿记忆法</a><time datetime="2025-03-06T12:15:25.000Z" title="发表于 2025-03-06 20:15:25">2025-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/27/mars-survival-guide/" title="火星生存指南--火星救援"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/mars-survival-guide/mars-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="火星生存指南--火星救援"></a><div class="content"><a class="title" href="/2024/11/27/mars-survival-guide/" title="火星生存指南--火星救援">火星生存指南--火星救援</a><time datetime="2024-11-27T03:13:26.000Z" title="发表于 2024-11-27 11:13:26">2024-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/19/commands-used-4-training/" title="服务器上模型训练的常用命令"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/commands-used-4-training/com-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="服务器上模型训练的常用命令"></a><div class="content"><a class="title" href="/2024/11/19/commands-used-4-training/" title="服务器上模型训练的常用命令">服务器上模型训练的常用命令</a><time datetime="2024-11-19T08:58:24.000Z" title="发表于 2024-11-19 16:58:24">2024-11-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/12/ozymandias/" title="OZYMANDIAS 奥西曼迭斯"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/ozymandias/ozy-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OZYMANDIAS 奥西曼迭斯"></a><div class="content"><a class="title" href="/2024/11/12/ozymandias/" title="OZYMANDIAS 奥西曼迭斯">OZYMANDIAS 奥西曼迭斯</a><time datetime="2024-11-12T13:36:55.000Z" title="发表于 2024-11-12 21:36:55">2024-11-12</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">©2020 - 2025 By 青椒肉丝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.2.2"></script><script src="/js/main.js?v=5.2.2"></script><script src="/js/tw_cn.js?v=5.2.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+      
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script></div><div id="moon-aplayer" class="aplayer no-destroy" data-id="13355291265" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-lrctype="0" data-listfolded="true" data-mutex="true"></div><script src="/js/jquery.js"></script><script src="/js/footer.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/playlist/"]):not([href="/2024/11/27/mars-survival-guide/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章或关键字" type="text"></div></div><hr><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.2.2"></script></div></div></body></html>

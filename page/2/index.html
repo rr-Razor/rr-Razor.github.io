@@ -1,0 +1,338 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>PlanZ - This PlanZ can't possibly fail</title><meta name="author" content="青椒肉丝"><meta name="copyright" content="青椒肉丝"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="All those moments will be lost in time, like tears in rain.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PlanZ">
+<meta property="og:url" content="https://moonglowshadow.com/page/2/index.html">
+<meta property="og:site_name" content="PlanZ">
+<meta property="og:description" content="All those moments will be lost in time, like tears in rain.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif">
+<meta property="article:author" content="青椒肉丝">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif"><link rel="shortcut icon" href="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/favicon_cat.png"><link rel="canonical" href="https://moonglowshadow.com/page/2/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""><link rel="preconnect" href="//busuanzi.ibruce.info"><link rel="stylesheet" href="/css/index.css?v=5.2.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-PKF693RYWD"></script><script>window.dataLayer = window.dataLayer || []
+function gtag(){dataLayer.push(arguments)}
+gtag('js', new Date())
+gtag('config', 'G-PKF693RYWD')
+btf.addGlobalFn('pjaxComplete', () => {
+  gtag('config', 'G-PKF693RYWD', {'page_path': window.location.pathname})
+}, 'google_analytics')
+</script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":600,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.12.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: true,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'PlanZ',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  isShuoshuo: false
+}</script><link rel="stylesheet" href="/css/aplayer/aplayer_custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/one_pic_background/modify.css"><link rel="stylesheet" href="/css/page_custom/my_custom.css"><link rel="stylesheet" href="/css/font/font_setting.css"><link rel="stylesheet" href="/css/cursor/cursor_setting.css"><meta name="generator" content="Hexo 7.2.0"></head><body><script>window.paceOptions = {
+  restartOnPushState: false
+}
+
+btf.addGlobalFn('pjaxSend', () => {
+  Pace.restart()
+}, 'pace_restart')
+
+</script><link rel="stylesheet" href="/css/preloader/preloader_flash.css"><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><div id="web_bg" style="background-image: url(https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/background_tingyun.png);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/playlist/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page" id="page-header" style="background: transparent;"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/logo_cat.png" alt="Logo"><span class="site-name">PlanZ</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-book"></i><span> 文章</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/playlist/"><i class="fa-fw fas fa-music"></i><span> 歌单</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 收藏夹</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="site-info"><h1 id="site-title">PlanZ</h1><div id="site-subtitle"><span id="subtitle"></span></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts nc" id="recent-posts"><div class="recent-post-items"><div class="recent-post-item"><div class="post_cover left"><a href="/2024/09/20/harvey-mudd-2024-commencement-address/" title="追逐梦想，并不是人生的全部--哈维穆德学院2024年毕业致辞"><img class="post-bg" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="追逐梦想，并不是人生的全部--哈维穆德学院2024年毕业致辞"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/09/20/harvey-mudd-2024-commencement-address/" title="追逐梦想，并不是人生的全部--哈维穆德学院2024年毕业致辞">追逐梦想，并不是人生的全部--哈维穆德学院2024年毕业致辞</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-20T06:40:26.000Z" title="发表于 2024-09-20 14:40:26">2024-09-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%98%85%E8%AF%BB/">阅读</a></span></div><div class="content">每个励志演讲都应附带关于幸存者偏差的免责声明。</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/09/18/pyramid-theory/" title="金字塔原理--读书笔记"><img class="post-bg" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_4.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="金字塔原理--读书笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/09/18/pyramid-theory/" title="金字塔原理--读书笔记">金字塔原理--读书笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-18T03:01:13.000Z" title="发表于 2024-09-18 11:01:13">2024-09-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E9%98%85%E8%AF%BB/">阅读</a></span></div><div class="content">使用金字塔结构表达思想。</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2024/09/12/leetcode-2748/" title="美丽下标对的数目 (leetcode 2748)"><img class="post-bg" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="美丽下标对的数目 (leetcode 2748)"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/09/12/leetcode-2748/" title="美丽下标对的数目 (leetcode 2748)">美丽下标对的数目 (leetcode 2748)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-12T03:04:36.000Z" title="发表于 2024-09-12 11:04:36">2024-09-12</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">LeetCode每日一题题目来源：力扣（LeetCode）  2748. 美丽下标对的数目（简单）暴力枚举 哈希表 题目描述给你一个下标从 0 开始的整数数组 nums 。如果下标对 i、j 满足 0 ≤ i &lt; j &lt; nums.length ，如果 nums[i] 的 第一个数字 和 nums[j] 的 最后一个数字 互质 ，则认为 nums[i] 和 nums[j] 是一组 美丽下标对 。 返回 nums 中 美丽下标对 的总数目。 对于两个整数 x 和 y ，如果不存在大于 1 的整数可以整除它们，则认为 x 和 y 互质 。换而言之，如果 gcd(x, y) == 1 ，则认为 x 和 y 互质，其中 gcd(x, y) 是 x 和 y 的 最大公因数 。 示例 1：  输入：nums = [2,5,1,4]输出：5解释：nums 中共有 5 组美丽下标对：i = 0 和 j = 1 ：nums[0] 的第一个数字是 2 ，nums[1] 的最后一个数字是 5 。2 和 5 互质，因此 gcd(2,5) == 1 。i = 0 和 j = 2 ：nums[0] 的第一个数字是 2 ，nums[2] 的最后一个数字是 1 。2 和 1 互质，因此 gcd(2,1) == 1 。i = 1 和 j = 2 ：nums[1] 的第一个数字是 5 ，nums[2] 的最后一个数字是 1 。5 和 1 互质，因此 gcd(5,1) == 1 。i = 1 和 j = 3 ：nums[1] 的第一个数字是 5 ，nums[3] 的最后一个数字是 4 。5 和 4 互质，因此 gcd(5,4) == 1 。i = 2 和 j = 3 ：nums[2] 的第一个数字是 1 ，nums[3] 的最后一个数字是 4 。1 和 4 互质，因此 gcd(1,4) == 1 。因此，返回 5 。  示例 2：  输入：nums = [11,21,12]输出：2解释：共有 2 组美丽下标对：i = 0 和 j = 1 ：nums[0] 的第一个数字是 1 ，nums[1] 的最后一个数字是 1 。gcd(1,1) == 1 。i = 0 和 j = 2 ：nums[0] 的第一个数字是 1 ，nums[2] 的最后一个数字是 2 。gcd(1,2) == 1...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/09/11/leetcode-2713/" title="矩阵中严格递增的单元格数 (leetcode 2713)"><img class="post-bg" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_5.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="矩阵中严格递增的单元格数 (leetcode 2713)"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/09/11/leetcode-2713/" title="矩阵中严格递增的单元格数 (leetcode 2713)">矩阵中严格递增的单元格数 (leetcode 2713)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-11T11:21:56.000Z" title="发表于 2024-09-11 19:21:56">2024-09-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">LeetCode每日一题题目来源：力扣（LeetCode）  2713. 矩阵中严格递增的单元格数（困难）动态规划 矩阵 题目描述给你一个下标从 1 开始、大小为 m x n 的整数矩阵 mat，你可以选择任一单元格作为 起始单元格 。 从起始单元格出发，你可以移动到 同一行或同一列 中的任何其他单元格，但前提是目标单元格的值 严格大于 当前单元格的值。 你可以多次重复这一过程，从一个单元格移动到另一个单元格，直到无法再进行任何移动。 请你找出从某个单元开始访问矩阵所能访问的 单元格的最大数量 。 返回一个表示可访问单元格最大数量的整数。 示例 1：   输入：mat = [[3,1],[3,4]]输出：2解释：上图展示了从第 1 行、第 2 列的单元格开始，可以访问 2 个单元格。可以证明，无论从哪个单元格开始，最多只能访问 2 个单元格，因此答案是 2 。  示例 2：   输入：mat = [[1,1],[1,1]]输出：1解释：由于目标单元格必须严格大于当前单元格，在本示例中只能访问 1 个单元格。  示例 3：   输入：mat = [[3,1,6],[-9,5,7]]输出：4解释：上图展示了从第 2 行、第 1 列的单元格开始，可以访问 4 个单元格。可以证明，无论从哪个单元格开始，最多只能访问 4 个单元格，因此答案是 4 。    提示：  $m == mat.length$  $n == mat[i].length $ $1 &lt;= m, n &lt;= 10^5$ $1 &lt;= m * n &lt;= 10^5$ $-10^5 &lt;= mat[i][j] &lt;= 10^5$  题解动态规划 设 $d[i][j]$ 为移动到单元格 $(i,j)$ 的最大步数，其中 $(i,j)$ 可以作为起始单元格，也可以是从其他单元格移动而来。考虑从第 $i$ 行以及第 $j$ 列上矩阵单元格数值小于 $mat[i][j]$ 的位置进行转移，即 $d[i][j]$ 取以下数值中的最大值：  第 $i$ 行：$max(d[i][j’]+1)$ ，其中 $mat[i][j’] &lt; mat[i][j]$ 第 $j$ 列：$max(d[i’][j]+1)$ ，其中 $mat[i’][j] &lt;...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2024/09/11/leetcode-2288/" title="价格减免 (leetcode 2288)"><img class="post-bg" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_11.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="价格减免 (leetcode 2288)"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/09/11/leetcode-2288/" title="价格减免 (leetcode 2288)">价格减免 (leetcode 2288)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-11T07:57:19.000Z" title="发表于 2024-09-11 15:57:19">2024-09-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">LeetCode每日一题题目来源：力扣（LeetCode）  2288. 价格减免（中等）.split() .isnumeric() 题目描述句子 是由若干个单词组成的字符串，单词之间用单个空格分隔，其中每个单词可以包含数字、小写字母、和美元符号 '$' 。如果单词的形式为美元符号后跟着一个非负实数，那么这个单词就表示一个 价格 。  例如 "$100"、"$23" 和 "$6" 表示价格，而 "100"、"$" 和 "$1e5 不是。  给你一个字符串 sentence 表示一个句子和一个整数 discount 。对于每个表示价格的单词，都在价格的基础上减免 discount% ，并 更新 该单词到句子中。所有更新后的价格应该表示为一个 恰好保留小数点后两位 的数字。 返回表示修改后句子的字符串。 注意：所有价格 最多 为 10 位数字。 示例 1：  输入：sentence = "there are $1 $2 and 5$ candies in the shop", discount = 50输出："there are $0.50 $1.00 and 5$ candies in the shop"解释：表示价格的单词是 “$1“ 和 “$2“ 。   “$1“ 减免 50% 为 “$0.50“ ，所以 “$1“ 替换为 “$0.50“ 。 “$2“ 减免 50% 为 “$1“ ，所以 “$2“ 替换为 “$1.00“ 。   示例 2：  输入：sentence = "1 2 $3 4 $5 $6 7 8$ $9 $10$", discount = 100输出："1 2 $0.00 4 $0.00 $0.00 7 8$ $0.00 $10$"解释：任何价格减免 100% 都会得到 0 。表示价格的单词分别是 “$3“、”$5“、”$6“ 和 “$9“。每个单词都替换为 “$0.00“。   提示：  $1 &lt;= sentence.length &lt;= 10^5$ $sentence$ 由小写英文字母、数字、' ' 和...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/09/11/leetcode-522/" title="最长特殊序列II (leetcode 522)"><img class="post-bg" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_2.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="最长特殊序列II (leetcode 522)"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/09/11/leetcode-522/" title="最长特殊序列II (leetcode 522)">最长特殊序列II (leetcode 522)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-09-11T06:46:10.000Z" title="发表于 2024-09-11 14:46:10">2024-09-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">LeetCode每日一题题目来源：力扣（LeetCode）  522. 最长特殊序列II（中等）贪心 双指针 题目描述给定字符串列表 strs ，返回其中 最长的特殊序列 的长度。如果最长特殊序列不存在，返回 -1 。 特殊序列 定义如下：该序列为某字符串 独有的子序列（即不能是其他字符串的子序列）。  s 的 子序列可以通过删去字符串 s 中的某些字符实现。  例如，"abc" 是 "aebdc" 的子序列，因为您可以删除"aebdc"中的字符"e"和"d"来得到 "abc" 。"aebdc"的子序列还包括"aebdc"、 "aeb" 和 "" (空字符串)等。  示例 1：  输入: strs = [“aba”,”cdc”,”eae”]输出: 3  示例 2:  输入: strs = [“aaa”,”aaa”,”aa”]输出: -1  提示:  $2 &lt;= strs.length &lt;= 50$ $1 &lt;= strs[i].length &lt;= 10$ $strs[i]$ 只包含小写英文字母  题解问题转换，枚举字符串，判断子序列 问题转换： 原问题 =&gt; 找出字符串列表 strs 中最长的特殊序列 的长度。 假设某个字符串 strs[i] ，如果它的一个子序列sub是「特殊序列」，那么 strs[i]本身也是一个「特殊序列」。  如果 sub 没有在除了 strs[i] 之外的字符串中以子序列的形式出现过，那么即使给  sub  不断地添加字符，它也依旧不会出现。而 strs[i] 就是给 sub 添加若干个（可以为零个）字符得到的结果。即如果 strs[i] 存在特殊序列sub，那么 strs[i] 本身也是一个特殊序列。  即字符串列表 strs 中最长的特殊序列的长度为其中某一非子序列字符串 strs[i] 的长度或-1 新问题 =&gt; 判断列表strs 中的每一个字符串 strs[i] 是否为其他字符串 strs[j](i!=j) 的子序列。 思路：  使用一个双重循环，外层枚举每一个字符串  strs[i]...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2024/06/26/hexo-formula-rendering/" title="Hexo公式渲染问题"><img class="post-bg" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_8.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Hexo公式渲染问题"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/26/hexo-formula-rendering/" title="Hexo公式渲染问题">Hexo公式渲染问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-26T06:40:25.000Z" title="发表于 2024-06-26 14:40:25">2024-06-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%B7%A5%E5%85%B7%E7%AE%B1/">工具箱</a></span></div><div class="content">解决Hexo框架下Latex公式无法被渲染的问题。</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2024/06/26/leetcode-2786/" title="访问数组中的位置使分数最大 (LeetCode 2786)"><img class="post-bg" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_10.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="访问数组中的位置使分数最大 (LeetCode 2786)"></a></div><div class="recent-post-info"><a class="article-title" href="/2024/06/26/leetcode-2786/" title="访问数组中的位置使分数最大 (LeetCode 2786)">访问数组中的位置使分数最大 (LeetCode 2786)</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-06-26T05:20:15.000Z" title="发表于 2024-06-26 13:20:15">2024-06-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">LeetCode每日一题题目来源：力扣（LeetCode）  2786. 访问数组中的位置使分数最大（中等）动态规划 数组 题目描述给你一个下标从 0 开始的整数数组 nums 和一个正整数 x 。 你 一开始 在数组的位置 0 处，你可以按照下述规则访问数组中的其他位置：  如果你当前在位置 i ，那么你可以移动到满足 i &lt; j 的 任意 位置 j 。 对于你访问的位置 i ，你可以获得分数 nums[i] 。 如果你从位置 i 移动到位置 j 且 nums[i] 和 nums[j] 的 奇偶性 不同，那么你将失去分数 x 。  请你返回你能得到的 最大 得分之和。 注意 ，你一开始的分数为 nums[0] 。 示例 1：  输入：nums = [2,3,6,1,9,2], x = 5输出：13解释：我们可以按顺序访问数组中的位置：0 -&gt; 2 -&gt; 3 -&gt; 4 。对应位置的值为 2 ，6 ，1 和 9 。因为 6 和 1 的奇偶性不同，所以下标从 2 -&gt; 3 让你失去 x = 5 分。总得分为：2 + 6 + 1 + 9 - 5 = 13 。  示例 2：  输入：nums = [2,4,6,8], x = 3输出：20解释：数组中的所有元素奇偶性都一样，所以我们可以将每个元素都访问一次，而且不会失去任何分数。总得分为：2 + 4 + 6 + 8 = 20 。  提示：  $2 &lt;= nums.length &lt;= 10^5$ $1 &lt;= nums[i], x &lt;= 10^6$  题解动态规划 从左到右遍历数组，遍历到一个元素 $e$ 时，如果移动到此位置，那么能获取的最大分数取决于：  上一次移动到的元素为奇数且得分最大值 $odd$ 上一次移动到的元素为偶数且得分最大值 $even$  即移动到当前位置可以获得的最大得分 $now$ 等于:  在当前元素为奇数时：$now=max(odd+e,even+e-x)$ 在当前元素为偶数时：$now=max(odd+e-x,even+e)$  将最大得分之和 $score$ 更新为：  $score=max(score,now)$  1234567891011121314class Solution:    def maxScore(self,...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2022/12/11/hungarian-algorithm/" title="匈牙利算法"><img class="post-bg" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_7.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="匈牙利算法"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/12/11/hungarian-algorithm/" title="匈牙利算法">匈牙利算法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-12-11T08:14:14.000Z" title="发表于 2022-12-11 16:14:14">2022-12-11</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">匈牙利算法匈牙利算法步骤 任给初始匹配M 若M饱和V1则结束，否则转(3) 在V1中找一个非M饱和点x，置S={x}，T={ } 若N(S)=T，则停止，否则在N(S)-T中任选一点y 若y为M饱和点转(6)，否则求一条从x到y的M可增广路P，并更新匹配M，转(2) 因为y是M饱和点，所以M中有一边(y，u)，置S=S∪{u}，T=T∪{y}，转(4)  代码部分输入二部图如下：  可以由以下代码表示： 123456# 输入二部图bi_graph = [[0, 1, 1, 0, 0],            [1, 1, 0, 1, 1],            [0, 1, 1, 0, 0],            [0, 1, 1, 0, 0],            [0, 0, 0, 1, 1]] (1). 任给初始匹配M 12345678910111213141516# 初始化匹配def init_matching(graph):    x, y = np.shape(graph)    matching = np.zeros((x, y), int)    matched = []    for i in range(0, x):        for j in range(0, y):            if graph[i][j] == 1 and j not in matched:                matching[i][j] = 1                matched.append(j)                break    return matching 创建一个与二部图矩阵对应的匹配矩阵，初始化匹配矩阵的规则是：遍历输入的二部图矩阵，从V1出发找到V2找边，如果该边在V2中饱和的点已经在匹配中出现，则不选择该边，当找到一条合适的边时，将其加入匹配矩阵结束本次循环，并在V1中找到下一个点继续重复以上过程。 以上过程结束后即可获得如下(a)所示初始匹配矩阵。由于此初始化方法在本例中直接给出了最大匹配，无法体现完整的算法过程，因此在之后的代码中将采用(b)作为初始匹配。   (b)初始化匹配结果如图所示：  (2). 判断匹配M是否饱和V1 12345678# 判断匹配是否饱和所有V1点def...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2022/10/09/graph-theory-and-applications/" title="图论及其应用"><img class="post-bg" src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_10.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图论及其应用"></a></div><div class="recent-post-info"><a class="article-title" href="/2022/10/09/graph-theory-and-applications/" title="图论及其应用">图论及其应用</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-10-09T05:45:07.000Z" title="发表于 2022-10-09 13:45:07">2022-10-09</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></span></div><div class="content">图论及其应用对于任意无向图G(输入为矩阵)，编写程序实现：  任务一：画出图G，并给所有顶点和边标号 任务二：求出图G的度序列 任务三：画出图G的补图 任务四：判断图G的连通性 任务五：求出图G的边连通度和点连通度 任务六：求出图G的最小点割集和最小边割集(元素最少)  解决方案任务一（画出图G，并给所有顶点和边标号） 通过 BrushTools 类中的 draw_vertex()# 画点, draw_edge()# 画边, show()# 展示绘制图像 方法实现 使用二维矩阵接收点和边，点用坐标表示，边用邻接矩阵表示，如下所示：  123456789import numpy as np# 接收点v = np.array([[1, 1], [1, 4], [7, 3], [5, 1]])# 接收边e = np.array([[1, 2, 0, 0],              [2, 0, 0, 1],              [0, 0, 0, 0],              [0, 1, 0, 0]])  使用python绘图库matplotlib实现图的绘制 使用matplotlib中的 scatter(x坐标, y坐标, c="颜色") 函数绘制图的顶点 使用matplotlib中的 plot(x坐标, y坐标, c="颜色") 函数绘制图的边，其中边的始点和终点坐标通过邻接矩阵e找到对应顶点坐标矩阵v中相应的坐标 通过matplotlib中的 add_artist(plt.Circle((圆心坐标), 半径, fill=是否填充, color="颜色")) 函数为画布上添加圆形来表示环 使用matplotlib中的 annotate(注释内容, xy=[添加注释的点的坐标], xytext=[注释文字的坐标]) 注释函数为点和边添加注释。注：在非简单无向图中，平行边通过为一条边添加多个不同的边注释来表示 使用matplotlib中的 show() 函数将绘制完的图像进行展示    任务二（求出图G的度序列） 通过 CalcTools 类中的 calc_degrees() 方法实现度序列的计算 因为是无向图，因此点vi的度数只需要考虑邻接矩阵 e...</div></div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#content-inner">3</a><a class="page-number" href="/page/4/#content-inner">4</a><a class="extend next" rel="next" href="/page/3/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/avatar_486.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"></div><div class="author-info-name">青椒肉丝</div><div class="author-info-description">All those moments will be lost in time, like tears in rain.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">41</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/rr-Razor"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">初次访问时部分资源可能加载速度较慢，请耐心等待、尝试刷新或者使用魔法❀❀❀</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/04/01/godot-first-game-01/" title="使用Godot制作第一个2D游戏 01"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/images/cover_dog_6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="使用Godot制作第一个2D游戏 01"></a><div class="content"><a class="title" href="/2025/04/01/godot-first-game-01/" title="使用Godot制作第一个2D游戏 01">使用Godot制作第一个2D游戏 01</a><time datetime="2025-04-01T14:40:05.000Z" title="发表于 2025-04-01 22:40:05">2025-04-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/06/memory-palace/" title="宫殿记忆法"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/memory-palace/memory-palace-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="宫殿记忆法"></a><div class="content"><a class="title" href="/2025/03/06/memory-palace/" title="宫殿记忆法">宫殿记忆法</a><time datetime="2025-03-06T12:15:25.000Z" title="发表于 2025-03-06 20:15:25">2025-03-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/27/mars-survival-guide/" title="火星生存指南--火星救援"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/mars-survival-guide/mars-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="火星生存指南--火星救援"></a><div class="content"><a class="title" href="/2024/11/27/mars-survival-guide/" title="火星生存指南--火星救援">火星生存指南--火星救援</a><time datetime="2024-11-27T03:13:26.000Z" title="发表于 2024-11-27 11:13:26">2024-11-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/19/commands-used-4-training/" title="服务器上模型训练的常用命令"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/commands-used-4-training/com-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="服务器上模型训练的常用命令"></a><div class="content"><a class="title" href="/2024/11/19/commands-used-4-training/" title="服务器上模型训练的常用命令">服务器上模型训练的常用命令</a><time datetime="2024-11-19T08:58:24.000Z" title="发表于 2024-11-19 16:58:24">2024-11-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/11/12/ozymandias/" title="OZYMANDIAS 奥西曼迭斯"><img src="https://moonglowshadow.oss-cn-qingdao.aliyuncs.com/planz/source/posts/ozymandias/ozy-cover.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="OZYMANDIAS 奥西曼迭斯"></a><div class="content"><a class="title" href="/2024/11/12/ozymandias/" title="OZYMANDIAS 奥西曼迭斯">OZYMANDIAS 奥西曼迭斯</a><time datetime="2024-11-12T13:36:55.000Z" title="发表于 2024-11-12 21:36:55">2024-11-12</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+          </div>
+          <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Godot/"><span class="card-category-list-name">Godot</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Java%E7%AC%94%E8%AE%B0/"><span class="card-category-list-name">Java笔记</span><span class="card-category-list-count">13</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/"><span class="card-category-list-name">图像处理</span><span class="card-category-list-count">4</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%B7%A5%E5%85%B7%E7%AE%B1/"><span class="card-category-list-name">工具箱</span><span class="card-category-list-count">3</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9D%82%E8%B0%88/"><span class="card-category-list-name">杂谈</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E7%AE%97%E6%B3%95/"><span class="card-category-list-name">算法</span><span class="card-category-list-count">12</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E9%98%85%E8%AF%BB/"><span class="card-category-list-name">阅读</span><span class="card-category-list-count">5</span></a></li>
+          </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/A-Star/" style="font-size: 1.15em; color: rgb(106, 50, 134);">A-Star</a><a href="/tags/%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84/" style="font-size: 1.22em; color: rgb(158, 80, 162);">最短路径</a><a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1.15em; color: rgb(132, 165, 171);">服务器</a><a href="/tags/%E5%91%BD%E4%BB%A4/" style="font-size: 1.15em; color: rgb(50, 91, 75);">命令</a><a href="/tags/%E5%9B%BE%E5%83%8F%E5%8E%BB%E9%9B%BE/" style="font-size: 1.38em; color: rgb(109, 167, 140);">图像去雾</a><a href="/tags/%E6%9A%97%E9%80%9A%E9%81%93%E5%85%88%E9%AA%8C/" style="font-size: 1.15em; color: rgb(128, 50, 196);">暗通道先验</a><a href="/tags/%E6%95%B0%E6%8D%AE%E9%9B%86/" style="font-size: 1.22em; color: rgb(166, 156, 50);">数据集</a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1.3em; color: rgb(101, 108, 50);">动态规划</a><a href="/tags/%E6%97%A0%E4%BA%BA%E6%9C%BA/" style="font-size: 1.15em; color: rgb(104, 50, 132);">无人机</a><a href="/tags/GUI/" style="font-size: 1.15em; color: rgb(173, 50, 50);">GUI</a><a href="/tags/Java/" style="font-size: 1.45em; color: rgb(195, 151, 174);">Java</a><a href="/tags/2D%E6%B8%B8%E6%88%8F/" style="font-size: 1.15em; color: rgb(61, 109, 50);">2D游戏</a><a href="/tags/%E6%95%99%E7%A8%8B/" style="font-size: 1.15em; color: rgb(50, 157, 52);">教程</a><a href="/tags/%E5%9B%BE%E8%AE%BA/" style="font-size: 1.22em; color: rgb(146, 193, 50);">图论</a><a href="/tags/%E6%BC%94%E8%AE%B2/" style="font-size: 1.3em; color: rgb(90, 81, 118);">演讲</a><a href="/tags/3Blue1Brown/" style="font-size: 1.15em; color: rgb(195, 60, 98);">3Blue1Brown</a><a href="/tags/bug/" style="font-size: 1.15em; color: rgb(158, 60, 149);">bug</a><a href="/tags/hexo/" style="font-size: 1.15em; color: rgb(50, 55, 50);">hexo</a><a href="/tags/%E5%8C%88%E7%89%99%E5%88%A9%E7%AE%97%E6%B3%95/" style="font-size: 1.15em; color: rgb(172, 133, 114);">匈牙利算法</a><a href="/tags/%E5%8A%9B%E6%89%A3%E4%B8%AD%E7%AD%89/" style="font-size: 1.3em; color: rgb(63, 50, 178);">力扣中等</a><a href="/tags/%E5%86%85%E7%BD%AE%E5%87%BD%E6%95%B0/" style="font-size: 1.15em; color: rgb(108, 65, 50);">内置函数</a><a href="/tags/%E5%8A%9B%E6%89%A3%E7%AE%80%E5%8D%95/" style="font-size: 1.15em; color: rgb(97, 144, 119);">力扣简单</a><a href="/tags/%E6%9A%B4%E5%8A%9B%E6%9E%9A%E4%B8%BE/" style="font-size: 1.15em; color: rgb(168, 50, 189);">暴力枚举</a><a href="/tags/%E5%93%88%E5%B8%8C%E8%A1%A8/" style="font-size: 1.15em; color: rgb(100, 66, 72);">哈希表</a><a href="/tags/%E6%95%B0%E7%BB%84/" style="font-size: 1.15em; color: rgb(82, 50, 148);">数组</a><a href="/tags/%E5%8A%9B%E6%89%A3%E5%9B%B0%E9%9A%BE/" style="font-size: 1.15em; color: rgb(50, 130, 96);">力扣困难</a><a href="/tags/%E7%9F%A9%E9%98%B5/" style="font-size: 1.15em; color: rgb(50, 90, 50);">矩阵</a><a href="/tags/%E8%B4%AA%E5%BF%83/" style="font-size: 1.15em; color: rgb(88, 50, 116);">贪心</a><a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" style="font-size: 1.15em; color: rgb(101, 50, 172);">双指针</a><a href="/tags/%E7%94%B5%E5%BD%B1/" style="font-size: 1.22em; color: rgb(156, 184, 161);">电影</a><a href="/tags/%E7%81%AB%E6%98%9F%E6%95%91%E6%8F%B4/" style="font-size: 1.15em; color: rgb(81, 58, 117);">火星救援</a><a href="/tags/%E8%AF%97%E6%AD%8C/" style="font-size: 1.15em; color: rgb(50, 130, 67);">诗歌</a><a href="/tags/%E7%BB%9D%E5%91%BD%E6%AF%92%E5%B8%88/" style="font-size: 1.15em; color: rgb(50, 50, 189);">绝命毒师</a><a href="/tags/%E5%BC%82%E5%BD%A2-%E5%A5%91%E7%BA%A6/" style="font-size: 1.15em; color: rgb(56, 144, 50);">异形-契约</a><a href="/tags/Web/" style="font-size: 1.15em; color: rgb(73, 50, 51);">Web</a><a href="/tags/%E8%AE%B0%E5%BF%86/" style="font-size: 1.15em; color: rgb(127, 161, 50);">记忆</a><a href="/tags/Ntire/" style="font-size: 1.15em; color: rgb(197, 50, 183);">Ntire</a><a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 1.15em; color: rgb(94, 143, 100);">读书笔记</a><a href="/tags/Typora/" style="font-size: 1.15em; color: rgb(50, 151, 190);">Typora</a><a href="/tags/SpringBoot/" style="font-size: 1.15em; color: rgb(135, 110, 78);">SpringBoot</a><a href="/tags/DevTools/" style="font-size: 1.15em; color: rgb(89, 50, 50);">DevTools</a></div></div><div class="card-widget card-archives">
+    <div class="item-headline">
+      <i class="fas fa-archive"></i>
+      <span>归档</span>
+      <a class="card-more-btn" href="/archives/" title="查看更多"><i class="fas fa-angle-right"></i></a>
+    </div>
+    <ul class="card-archive-list">
+  
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/04/">
+          <span class="card-archive-list-date">2025 四月</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2025/03/">
+          <span class="card-archive-list-date">2025 三月</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/11/">
+          <span class="card-archive-list-date">2024 十一月</span>
+          <span class="card-archive-list-count">3</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/10/">
+          <span class="card-archive-list-date">2024 十月</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/09/">
+          <span class="card-archive-list-date">2024 九月</span>
+          <span class="card-archive-list-count">10</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2024/06/">
+          <span class="card-archive-list-date">2024 六月</span>
+          <span class="card-archive-list-count">2</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2022/12/">
+          <span class="card-archive-list-date">2022 十二月</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2022/10/">
+          <span class="card-archive-list-date">2022 十月</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2022/09/">
+          <span class="card-archive-list-date">2022 九月</span>
+          <span class="card-archive-list-count">1</span>
+        </a>
+      </li>
+    
+      <li class="card-archive-list-item">
+        <a class="card-archive-list-link" href="/archives/2021/01/">
+          <span class="card-archive-list-date">2021 一月</span>
+          <span class="card-archive-list-count">3</span>
+        </a>
+      </li>
+    </ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">39</div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">88k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastpushdate="2025-05-09T13:08:10.576Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">©2020 - 2025 By 青椒肉丝</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.2.2"></script><script src="/js/main.js?v=5.2.2"></script><script src="/js/tw_cn.js?v=5.2.2"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@5.2.0/instantpage.min.js" type="module"></script><div class="js-pjax"><script>window.typedJSFn = {
+  init: str => {
+    window.typed = new Typed('#subtitle', Object.assign({
+      strings: str,
+      startDelay: 300,
+      typeSpeed: 150,
+      loop: true,
+      backSpeed: 50,
+    }, null))
+  },
+  run: subtitleType => {
+    if (true) {
+      if (typeof Typed === 'function') {
+        subtitleType()
+      } else {
+        btf.getScript('https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.min.js').then(subtitleType)
+      }
+    } else {
+      subtitleType()
+    }
+  }
+}
+btf.addGlobalFn('pjaxSendOnce', () => { typed.destroy() }, 'typedDestroy')
+</script><script>function subtitleType () {
+  if (true) {
+    typedJSFn.init(["钱塘江上潮信来，今日方知我是我","My echo, my shadow and me","今朝有酒今朝醉，管他门前是与非","Get busy living or get busy dying","往者不可谏，来者犹可追","When nothing goes right, just go left","身健在 且加餐 舞裙歌板尽清欢","Audentes fortuna iuvat","疾风怒涛，生死流转","It's lights out and away we go"])
+  } else {
+    document.getElementById("subtitle").textContent = "钱塘江上潮信来，今日方知我是我"
+  }
+}
+typedJSFn.run(subtitleType)</script></div><div id="moon-aplayer" class="aplayer no-destroy" data-id="13355291265" data-server="netease" data-type="playlist" data-fixed="true" data-autoplay="false" data-lrctype="0" data-listfolded="true" data-mutex="true"></div><script src="/js/jquery.js"></script><script src="/js/footer.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.4/metingjs/dist/Meting.min.js"></script><script>(() => {
+  const destroyAplayer = () => {
+    if (window.aplayers) {
+      for (let i = 0; i < window.aplayers.length; i++) {
+        if (!window.aplayers[i].options.fixed) {
+          window.aplayers[i].destroy()
+        }
+      }
+    }
+  }
+
+  const runMetingJS = () => {
+    typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+  }
+
+  btf.addGlobalFn('pjaxSend', destroyAplayer, 'destroyAplayer')
+  btf.addGlobalFn('pjaxComplete', loadMeting, 'runMetingJS')
+})()</script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script><script>(() => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([href="/playlist/"]):not([href="/2024/11/27/mars-survival-guide/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: true,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => fn())
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || item.innerHTML || ""
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    if (e.request.status === 404) {
+      pjax.loadUrl('/404.html')
+    }
+  })
+})()</script><script async="" data-pjax="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章或关键字" type="text"></div></div><hr><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=5.2.2"></script></div></div></body></html>
